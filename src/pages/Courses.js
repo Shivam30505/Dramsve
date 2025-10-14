@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ieltsImage from '../images/ielts.jpg';
-const digitalSatImage = require('../images/digital_sat.jpg');
+import digitalSatImage from '../images/digital_sat.jpg';
 import frenchImage from '../images/french.jpg';
 import germanImage from '../images/german.jpg';
 import duolingoImage from '../images/duolingo.jpg';
-const careerMentorImage = require('../images/career_mentor.jpg');
+import careerMentorImage from '../images/career_mentor.jpg';
 // import ChatButton from '../components/ChatButton';
 
 const Courses = () => {
