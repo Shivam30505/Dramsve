@@ -91,7 +91,7 @@ const Home = () => {
             </motion.div>
 
             <div className="container mx-auto px-6 relative z-10">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
                 <motion.div 
                   className="text-center lg:text-left"
                   initial={{ opacity: 0, x: -50 }}
@@ -99,7 +99,7 @@ const Home = () => {
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
                 >
-                  <motion.h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                  <motion.h2 className="text-4xl md:text-5xl font-extrabold mt-4 mb-6 leading-tight" style={{color: '#333'}}>
                     <div className="mb-2">
                       {titleLine1.split('').map((char, index) => (
                         <motion.span
@@ -161,34 +161,33 @@ const Home = () => {
                         |
                       </motion.span>
                     </motion.div>
-                  </motion.h1>
+                  </motion.h2>
                   <motion.p 
-                    className="text-lg md:text-xl mb-8 max-w-2xl mx-auto lg:mx-0"
-                    style={{color: '#666'}}
+                    className="text-lg mb-8 font-light"
+                    style={{color: '#666', fontFamily: 'Montserrat, sans-serif', letterSpacing: '0.5px', lineHeight: '1.8'}}
                     initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 2.5, duration: 0.8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
                   >
                     Your reliable companion for international academic guidance, skill enhancement, and professional communication training.
                   </motion.p>
-                  <motion.div
+                  <motion.button
+                    className="inline-block rounded-lg px-8 py-4 text-white text-base font-bold tracking-wide transition-all duration-300 shadow-lg"
+                    style={{backgroundColor: '#8B5FBF'}}
+                    whileHover={{ scale: 1.05, y: -2, backgroundColor: '#7FB83D' }}
+                    whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 3, duration: 0.8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                    onClick={() => {
+                      navigate('/courses');
+                      window.scrollTo(0, 0);
+                    }}
                   >
-                    <motion.button
-                      className="inline-block rounded-lg px-8 py-4 text-white text-base font-bold tracking-wide transition-all duration-300 shadow-lg"
-                      style={{backgroundColor: '#8B5FBF'}}
-                      whileHover={{ scale: 1.05, y: -2, backgroundColor: '#7FB83D' }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => {
-                        navigate('/courses');
-                        window.scrollTo(0, 0);
-                      }}
-                    >
-                      Get Started
-                    </motion.button>
-                  </motion.div>
+                    Get Started
+                  </motion.button>
                 </motion.div>
                 <motion.div 
                   className="relative"
@@ -199,15 +198,28 @@ const Home = () => {
                 >
                   <motion.img 
                     alt="DRAMSVE Hero" 
-                    className="object-cover w-full h-96 cursor-pointer rounded-2xl" 
+                    className="object-cover w-full h-96 cursor-pointer" 
                     src={heroSvg}
+                    style={{
+                      borderRadius: '60px 20px 60px 20px',
+                      boxShadow: '0 20px 40px rgba(106, 61, 154, 0.2)'
+                    }}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.05, rotateY: 5, rotateX: 2 }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      rotateY: 10, 
+                      rotateX: 5,
+                      borderRadius: '20px 60px 20px 60px',
+                      boxShadow: '0 30px 60px rgba(106, 61, 154, 0.4)'
+                    }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     viewport={{ once: true }}
-                    animate={{ y: [0, -10, 0] }}
+                    animate={{ 
+                      y: [0, -10, 0],
+                      borderRadius: ['60px 20px 60px 20px', '40px 40px 40px 40px', '60px 20px 60px 20px']
+                    }}
                   />
                   <motion.div 
                     className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-r from-purple-200 to-pink-200 rounded-full blur-2xl opacity-60"
