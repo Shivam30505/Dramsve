@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useContact } from '../contexts/ContactContext';
 import logo from '../images/logo.png';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { openContact } = useContact();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,6 +35,8 @@ const Header = () => {
       window.scrollTo(0, 0);
     } else if (item.href) {
       window.location.href = item.href;
+    } else if (item.id === 'contact') {
+      openContact();
     } else if (item.id) {
       if (location.pathname !== '/') {
         navigate('/');
@@ -83,7 +87,6 @@ const Header = () => {
               { name: 'Courses', href: '/courses' },
               { name: 'Services', id: 'services' },
               { name: 'About Us', href: '/about' },
-              { name: 'Blog', href: '/blog' },
               { name: 'Contact', id: 'contact' }
             ].map((item) => (
               <motion.button
@@ -107,22 +110,7 @@ const Header = () => {
                 scale: 1.05
               }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                if (location.pathname !== '/') {
-                  navigate('/');
-                  setTimeout(() => {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }, 100);
-                } else {
-                  const element = document.getElementById('contact');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
-              }}
+              onClick={openContact}
             >
               <span>Book a free trial</span>
             </motion.button>
@@ -180,7 +168,6 @@ const Header = () => {
                     { name: 'Courses', href: '/courses' },
                     { name: 'Services', id: 'services' },
                     { name: 'About Us', href: '/about' },
-                    { name: 'Blog', href: '/blog' },
                     { name: 'Contact', id: 'contact' }
                   ].map((item, index) => (
                     <motion.button
@@ -207,20 +194,7 @@ const Header = () => {
                   transition={{ delay: 0.5 }}
                   onClick={() => {
                     setIsMobileMenuOpen(false);
-                    if (location.pathname !== '/') {
-                      navigate('/');
-                      setTimeout(() => {
-                        const element = document.getElementById('contact');
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth' });
-                        }
-                      }, 100);
-                    } else {
-                      const element = document.getElementById('contact');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }
+                    openContact();
                   }}
                 >
                   Book a free trial

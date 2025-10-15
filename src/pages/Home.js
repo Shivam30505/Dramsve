@@ -7,7 +7,7 @@ import ServicesSection from '../components/ServicesSection';
 import CoursesSection from '../components/CoursesSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import PartnersSection from '../components/PartnersSection';
-import ContactSection from '../components/ContactSection';
+import BlogsSection from '../components/BlogsSection';
 import Footer from '../components/Footer';
 import heroSvg from '../images/hero.png';
 import airplanePng from '../images/Airplane.png';
@@ -267,7 +267,7 @@ const Home = () => {
           <div id="courses"><CoursesSection /></div>
           <TestimonialsSection />
           <PartnersSection />
-          <div id="contact"><ContactSection /></div>
+          <div id="blogs"><BlogsSection /></div>
         </main>
         <Footer />
       </div>

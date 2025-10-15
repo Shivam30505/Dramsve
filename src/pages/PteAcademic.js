@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useContact } from '../contexts/ContactContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const CounterCard = ({ metric, index }) => {
   const [count, setCount] = useState(0);
   const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
+
 
   useEffect(() => {
     if (inView) {
@@ -56,6 +58,7 @@ const PteAcademic = () => {
   const [faqRef, faqInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ctaRef, ctaInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [openFaq, setOpenFaq] = useState(null);
+  const { openContact } = useContact();
 
   const whyChoosePte = [
     {
@@ -287,9 +290,9 @@ const PteAcademic = () => {
                       boxShadow: ['0 4px 15px rgba(251, 176, 59, 0.2)', '0 8px 25px rgba(251, 176, 59, 0.4)', '0 4px 15px rgba(251, 176, 59, 0.2)'] 
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                     onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                    onClick={openContact}
                   >
-                    Enroll Now
+                    Start Free Trial
                   </motion.button>
                   
                 </motion.div>
@@ -632,9 +635,9 @@ const PteAcademic = () => {
                     boxShadow: ['0 5px 15px rgba(251, 176, 59, 0.3)', '0 8px 25px rgba(251, 176, 59, 0.5)', '0 5px 15px rgba(251, 176, 59, 0.3)']
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
-                   onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                   onClick={openContact}
                 >
-                  Enroll Now
+                  Know More
                 </motion.button>
                 
               </motion.div>

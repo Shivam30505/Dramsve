@@ -88,7 +88,7 @@ const PartnersSection = () => {
             {duplicatedPartners.map((partner, index) => (
               <motion.div
                 key={index}
-                className="flex-shrink-0 flex items-center justify-center mx-8"
+                className="flex-shrink-0 flex items-center justify-center mx-4"
                 style={{
                   width: '180px'
                 }}

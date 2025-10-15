@@ -399,4 +399,51 @@
     background-color: #ffffff !important;
     z-index: 40 !important;
   }
+  
+  /* Course cards mobile responsive */
+  .course-slideshow {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .course-slideshow::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .course-slideshow {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Mobile course card adjustments */
+  @media (max-width: 768px) {
+    .course-card-mobile {
+      width: 300px !important;
+      min-width: 300px !important;
+      height: 480px !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .course-card-mobile {
+      width: 280px !important;
+      min-width: 280px !important;
+      height: 460px !important;
+    }
+  }
+  
+  /* Blog cards mobile responsive */
+  .blog-slideshow {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .blog-slideshow::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .blog-slideshow {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

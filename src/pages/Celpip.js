@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useContact } from '../contexts/ContactContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -10,6 +11,7 @@ const Celpip = () => {
   const [packagesRef, packagesInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [structureRef, structureInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ctaRef, ctaInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const { openContact } = useContact();
 
   const keyBenefits = [
     {
@@ -303,9 +305,9 @@ const Celpip = () => {
                       boxShadow: '0 10px 25px rgba(108, 158, 36, 0.3)'
                     }}
                     whileTap={{ scale: 0.95 }}
-                     onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                    onClick={openContact}
                   >
-                    Start CELPIP Prep
+                    Start Free Trail
                   </motion.button>
                 </motion.div>
               </div>
@@ -676,9 +678,9 @@ const Celpip = () => {
                     y: -3
                   }}
                   whileTap={{ scale: 0.95 }}
-                   onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                   onClick={openContact}
                 >
-                  Enroll Now
+                  Know More
                 </motion.button>
                
               </motion.div>

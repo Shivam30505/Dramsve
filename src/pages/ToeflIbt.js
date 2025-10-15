@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useContact } from '../contexts/ContactContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -11,6 +12,7 @@ const ToeflIbt = () => {
   const [benefitsRef, benefitsInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ctaRef, ctaInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [openFaq, setOpenFaq] = useState(null);
+  const { openContact } = useContact();
 
   const keyBenefits = [
     {
@@ -260,9 +262,9 @@ const ToeflIbt = () => {
                       boxShadow: '0 10px 25px rgba(108, 158, 36, 0.3)'
                     }}
                     whileTap={{ scale: 0.95 }}
-                     onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                    onClick={openContact}
                   >
-                    Start TOEFL Preparation
+                    Start Free Trial
                   </motion.button>
                   
                 </motion.div>
@@ -604,9 +606,9 @@ const ToeflIbt = () => {
                     y: -3
                   }}
                   whileTap={{ scale: 0.95 }}
-                   onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                  onClick={openContact}
                 >
-                  Enroll Now
+                  Know More
                 </motion.button>
                 
               </motion.div>

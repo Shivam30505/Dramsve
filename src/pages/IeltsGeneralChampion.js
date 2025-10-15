@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useContact } from '../contexts/ContactContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const CounterCard = ({ metric, index }) => {
   const [count, setCount] = useState(0);
   const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
-
+    
   useEffect(() => {
     if (inView) {
       const duration = 2000;
@@ -54,6 +55,8 @@ const IeltsGeneralChampion = () => {
   const [scheduleRef, scheduleInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [featuresRef, featuresInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [journeyRef, journeyInView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const { openContact } = useContact();
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -191,9 +194,9 @@ const IeltsGeneralChampion = () => {
                     style={{backgroundColor: '#FBB03B', color: '#6A3D9A'}}
                     whileHover={{ scale: 1.05, backgroundColor: '#6C9E24', color: '#FFFFFF' }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                    onClick={openContact}
                   >
-                    Enroll Now
+                    Start Free Trial
                   </motion.button>
                 </motion.div>
               </div>
@@ -461,15 +464,15 @@ const IeltsGeneralChampion = () => {
                   style={{backgroundColor: '#FBB03B', color: '#6A3D9A'}}
                   whileHover={{ scale: 1.05, backgroundColor: '#6C9E24', color: '#FFFFFF' }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                  onClick={openContact}
                 >
-                  Enroll Now - Limited Seats
+                  Know More
                 </motion.button>
                 
               </div>
               
               <div className="flex flex-wrap justify-center gap-6 text-white/80">
-                {['180 Days Access', 'Certificate of Completion', 'Money-Back Guarantee'].map((feature, index) => (
+                {['180 Days Access', 'Certificate of Completion'].map((feature, index) => (
                   <div key={index} className="flex items-center gap-2">
                     <span className="material-symbols-outlined" style={{color: '#FBB03B'}}>verified</span>
                     <span>{feature}</span>

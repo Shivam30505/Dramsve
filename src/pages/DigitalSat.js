@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useContact } from '../contexts/ContactContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -96,6 +97,7 @@ const DigitalSat = () => {
 	const [packagesRef, packagesInView] = useInView({ threshold: 0.2, triggerOnce: true });
 	const [featuresRef, featuresInView] = useInView({ threshold: 0.2, triggerOnce: true });
 	const [ctaRef, ctaInView] = useInView({ threshold: 0.2, triggerOnce: true });
+	const { openContact } = useContact();
 
 	const cardVariants = {
 		hidden: { opacity: 0, y: 30 },
@@ -157,9 +159,9 @@ const DigitalSat = () => {
 										style={{backgroundColor: '#FBB03B', color: '#6A3D9A'}}
 										whileHover={{ scale: 1.05, backgroundColor: '#6C9E24', color: '#FFFFFF' }}
 										whileTap={{ scale: 0.95 }}
-										 onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+										onClick={openContact}
 									>
-										Start SAT Journey
+										Start Free Trial
 									</motion.button>
 									
 								</div>
@@ -479,9 +481,9 @@ const DigitalSat = () => {
 									style={{backgroundColor: '#FBB03B', color: '#6A3D9A'}}
 									whileHover={{ scale: 1.05, backgroundColor: '#6C9E24', color: '#FFFFFF' }}
 									whileTap={{ scale: 0.95 }}
-									 onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+									onClick={openContact}
 								>
-									Enroll Now - Limited Seats
+									Know More
 								</motion.button>
 							</div>
 							<div className="mt-6 flex flex-wrap justify-center gap-6 text-white/80">

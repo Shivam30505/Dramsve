@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useContact } from '../contexts/ContactContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -11,6 +12,7 @@ const DuolingoEnglish = () => {
   const [benefitsRef, benefitsInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ctaRef, ctaInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [openFaq, setOpenFaq] = useState(null);
+  const { openContact } = useContact();
 
   const keyFeatures = [
     {
@@ -238,9 +240,9 @@ const DuolingoEnglish = () => {
 
                     }}
                     whileTap={{ scale: 0.95 }}
-                     onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                     onClick={openContact}
                   >
-                    Start DET Preparation
+                    Start Free Trial
                   </motion.button>
                   
                 </motion.div>
@@ -554,9 +556,9 @@ const DuolingoEnglish = () => {
                     boxShadow: ['0 5px 15px rgba(251, 176, 59, 0.3)', '0 8px 25px rgba(251, 176, 59, 0.5)', '0 5px 15px rgba(251, 176, 59, 0.3)']
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
-                   onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                  onClick={openContact}
                 >
-                  Enroll Now
+                  Know More
                 </motion.button>
               </motion.div>
             </motion.div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -10,48 +10,63 @@ import frenchImage from '../images/french.jpg';
 import germanImage from '../images/german.jpg';
 import duolingoImage from '../images/duolingo.jpg';
 import careerMentorImage from '../images/career_mentor.jpg';
-// import ChatButton from '../components/ChatButton';
+import greImage from '../images/gre.png';
+import celpipImage from '../images/CELPIP.jpg';
+import spokenenglishImage from '../images/SpokenEnglish.jpg';
+import pteImage from '../images/PTE.png';
+import tofelImage from '../images/tofel.jpg';
+import gmatImage from '../images/gmat.jpg';
 
 const Courses = () => {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
   const navigate = useNavigate();
+  const [isIELTSModalOpen, setIsIELTSModalOpen] = useState(false);
+  const [selectedIELTSProgram, setSelectedIELTSProgram] = useState(null);
 
-  const courses = [
+  const ieltsPrograms = [
     {
+      id: 'academic-champion',
       title: 'IELTS Academic Champion',
       description: 'Comprehensive IELTS training with expert guidance to achieve your target band score.',
       duration: '8 weeks',
-      validity: '180 days',
-      rating: 4.8,
-      route: '/course/ielts-academic-champion',
-      category: 'Language Training'
+      intensity: 'Standard Pace',
+      route: '/course/ielts-academic-champion'
     },
     {
+      id: 'academic-marathon',
       title: 'IELTS Academic Marathon',
       description: 'Intensive reading and writing focused IELTS preparation program.',
       duration: '4 weeks',
-      validity: '45 days',
-      rating: 4.8,
-      route: '/course/ielts-academic-marathon',
-      category: 'Language Training'
+      intensity: 'Fast Track',
+      route: '/course/ielts-academic-marathon'
     },
     {
+      id: 'general-champion',
       title: 'IELTS General Champion',
       description: 'Complete IELTS General training for immigration and work purposes.',
       duration: '6 weeks',
-      validity: '180 days',
-      rating: 4.8,
-      route: '/course/ielts-general-champion',
-      category: 'Language Training'
+      intensity: 'Standard Pace',
+      route: '/course/ielts-general-champion'
     },
     {
+      id: 'general-marathon',
       title: 'IELTS General Marathon',
       description: 'Focused IELTS General preparation with targeted skill development.',
       duration: '4 weeks',
-      validity: '45 days',
+      intensity: 'Fast Track',
+      route: '/course/ielts-general-marathon'
+    }
+  ];
+
+  const courses = [
+    {
+      title: 'IELTS Preparation',
+      description: 'Comprehensive IELTS training with expert guidance to achieve your target band score for international admissions.',
+      duration: 'Flexible',
+      validity: 'Custom',
       rating: 4.8,
-      route: '/course/ielts-general-marathon',
-      category: 'Language Training'
+      category: 'Language Training',
+      hasVariants: true
     },
     {
       title: 'PTE Academic',
@@ -154,6 +169,28 @@ const Courses = () => {
     }
   ];
 
+  const handleIELTSCardClick = () => {
+    setIsIELTSModalOpen(true);
+    setSelectedIELTSProgram(null);
+  };
+
+  const handleProgramSelect = (program) => {
+    setSelectedIELTSProgram(program);
+  };
+
+  const handleContinue = () => {
+    if (selectedIELTSProgram) {
+      setIsIELTSModalOpen(false);
+      navigate(selectedIELTSProgram.route);
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsIELTSModalOpen(false);
+    setSelectedIELTSProgram(null);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -175,6 +212,26 @@ const Courses = () => {
         ease: "easeOut"
       }
     }
+  };
+
+  const modalVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.3, ease: "easeOut" }
+    },
+    exit: { 
+      opacity: 0, 
+      scale: 0.8,
+      transition: { duration: 0.2, ease: "easeIn" }
+    }
+  };
+
+  const overlayVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+    exit: { opacity: 0 }
   };
 
   const renderStars = (rating) => {
@@ -223,15 +280,20 @@ const Courses = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {courses.map((course, index) => (
-                <div 
+                <motion.div 
                   key={index}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
                   className="bg-white rounded-xl overflow-hidden group cursor-pointer"
                   style={{
                     boxShadow: '0 6px 15px rgba(0, 0, 0, 0.08)',
                     borderRadius: '20px'
                   }}
                   onClick={() => {
-                    if (course.route) {
+                    if (course.hasVariants) {
+                      handleIELTSCardClick();
+                    } else if (course.route) {
                       navigate(course.route);
                     } else {
                       window.open('https://elearning.dramsve.com/', '_blank');
@@ -242,7 +304,7 @@ const Courses = () => {
                     className="w-full h-40 sm:h-48 bg-cover bg-center"
                     style={{
                       backgroundImage: (() => {
-                        if (course.title === 'IELTS Academic Champion' || course.title === 'IELTS Academic Marathon' || course.title === 'IELTS General Champion' || course.title === 'IELTS General Marathon') {
+                        if (course.title === 'IELTS Preparation') {
                           return `url(${ieltsImage})`;
                         } else if (course.title === 'Digital SAT') {
                           return `url(${digitalSatImage})`;
@@ -254,7 +316,19 @@ const Courses = () => {
                           return `url(${duolingoImage})`;
                         } else if (course.title === 'Career Mentor') {
                           return `url(${careerMentorImage})`;
-                        } else {
+                        } else if (course.title === 'Shorter GRE') {
+                          return `url(${greImage})`;}
+                        else if (course.title === 'CELPIP') {
+                          return `url(${celpipImage})`;
+                        } else if (course.title === 'PTE Academic') {
+                          return `url(${pteImage})`;
+                        }else if (course.title === 'English Champion') {
+                          return `url(${spokenenglishImage})`;
+                        }else if (course.title === 'TOEFL IBT') {
+                          return `url(${tofelImage})`;
+                        }else if (course.title === 'GMAT') {
+                          return `url(${gmatImage})`;
+                        }else {
                           return `url("https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80")`;
                         }
                       })()
@@ -268,6 +342,10 @@ const Courses = () => {
                     >
                       {course.title}
                     </h3>
+                    
+                    <p className="text-sm mb-3" style={{color: '#666666', lineHeight: '1.5'}}>
+                      {course.description}
+                    </p>
                     
                     <div className="flex items-center justify-between text-sm mb-4" style={{color: '#666666'}}>
                       <span className="flex items-center gap-1.5">
@@ -288,69 +366,144 @@ const Courses = () => {
                         style={{backgroundColor: '#6A3D9A'}}
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (index === 0) {
-                            navigate('/course/ielts-academic-champion');
-                            window.scrollTo(0, 0);
-                          } else if (index === 1) {
-                            navigate('/course/ielts-academic-marathon');
-                            window.scrollTo(0, 0);
-                          } else if (index === 2) {
-                            navigate('/course/ielts-general-champion');
-                            window.scrollTo(0, 0);
-                          } else if (index === 3) {
-                            navigate('/course/ielts-general-marathon');
-                            window.scrollTo(0, 0);
-                          } else if (index === 4) {
-                            navigate('/course/pte-academic');
-                            window.scrollTo(0, 0);
-                          } else if (index === 5) {
-                            navigate('/course/toefl');
-                            window.scrollTo(0, 0);
-                          } else if (index === 6) {
-                            navigate('/course/duolingo-english');
-                            window.scrollTo(0, 0);
-                          } else if (index === 7) {
-                            navigate('/course/french-language');
-                            window.scrollTo(0, 0);
-                          } else if (index === 8) {
-                            navigate('/course/german-language');
-                            window.scrollTo(0, 0);
-                          } else if (index === 9) {
-                            navigate('/course/english-champion');
-                            window.scrollTo(0, 0);
-                          } else if (index === 13) {
-                            navigate('/course/career-mentor');
-                            window.scrollTo(0, 0);
-                          } else if (index === 14) {
-                            navigate('/course/celpip');
-                            window.scrollTo(0, 0);
-                          } else if (index === 10) {
-                            navigate('/course/digital-sat');
-                            window.scrollTo(0, 0);
-                          } else if (index === 11) {
-                            navigate('/course/gmat');
-                            window.scrollTo(0, 0);
-                          } else if (index === 12) {
-                            navigate('/course/shorter-gre');
+                          if (course.hasVariants) {
+                            handleIELTSCardClick();
+                          } else if (course.route) {
+                            navigate(course.route);
                             window.scrollTo(0, 0);
                           } else {
                             window.open('https://elearning.dramsve.com/', '_blank');
                           }
                         }}
                       >
-                        <span className="truncate">View Details</span>
+                        <span className="truncate">
+                          {course.hasVariants ? 'Choose Program' : 'View Details'}
+                        </span>
                       </button>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
       </main>
+
+      {/* IELTS Selection Modal */}
+      <AnimatePresence>
+        {isIELTSModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
+            variants={overlayVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <motion.div
+              className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              style={{
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)'
+              }}
+            >
+              {/* Modal Header */}
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-bold" style={{color: '#6A3D9A'}}>
+                    Choose Your IELTS Program
+                  </h2>
+                  <button
+                    onClick={handleCloseModal}
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-gray-600">close</span>
+                  </button>
+                </div>
+                <p className="text-gray-600 mt-2">
+                  Select the IELTS preparation program that best fits your goals and timeline
+                </p>
+              </div>
+
+              {/* Modal Body */}
+              <div className="p-6 overflow-y-auto max-h-[60vh]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {ieltsPrograms.map((program, index) => (
+                    <motion.div
+                      key={program.id}
+                      className={`p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 ${
+                        selectedIELTSProgram?.id === program.id 
+                          ? 'border-purple-500 bg-purple-50' 
+                          : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
+                      }`}
+                      onClick={() => handleProgramSelect(program)}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <h3 className="font-bold text-lg mb-2" style={{color: '#333333'}}>
+                        {program.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                        {program.description}
+                      </p>
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="flex items-center gap-1 text-gray-600">
+                          <span className="material-symbols-outlined text-base">schedule</span>
+                          {program.duration}
+                        </span>
+                        <span className="px-2 py-1 rounded-full text-xs font-medium" 
+                          style={{
+                            backgroundColor: program.intensity === 'Fast Track' ? '#FEF3CD' : '#DCFCE7',
+                            color: program.intensity === 'Fast Track' ? '#92400E' : '#166534'
+                          }}>
+                          {program.intensity}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="p-6 border-t border-gray-200 bg-gray-50">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                  <div>
+                    {selectedIELTSProgram && (
+                      <p className="text-sm text-gray-600">
+                        Selected: <span className="font-semibold text-purple-600">{selectedIELTSProgram.title}</span>
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={handleCloseModal}
+                      className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handleContinue}
+                      disabled={!selectedIELTSProgram}
+                      className={`px-6 py-2 rounded-lg font-bold text-white transition-all duration-300 ${
+                        selectedIELTSProgram 
+                          ? 'hover:bg-green-600' 
+                          : 'opacity-50 cursor-not-allowed'
+                      }`}
+                      style={{backgroundColor: '#6A3D9A'}}
+                    >
+                      Select & Continue
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       
       <Footer />
-     
     </div>
   );
 };

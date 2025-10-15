@@ -33,8 +33,8 @@ const ServicesSection = () => {
     },
     {
       icon: '🎯',
-      title: 'Career Counseling',
-      description: 'Professional guidance to help you make informed career decisions and achieve your goals.'
+      title: 'Study Abroad Admissions',
+      description: 'Get expert guidance and complete support for securing admission to top universities across various countries.'
     }
   ];
 
