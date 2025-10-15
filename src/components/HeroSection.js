@@ -11,10 +11,7 @@ const HeroSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.8, ease: 'easeOut' }
     }
   };
 
@@ -23,23 +20,21 @@ const HeroSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5
-      }
+      transition: { duration: 0.5 }
     }
   };
 
-  const title = "Learning without Border";
-  const subtitle = "with DRAMSVE";
-  
+  const title = 'Learning without Border';
+  const subtitle = 'with DRAMSVE';
+
   const [typewriterText, setTypewriterText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  
+
   useEffect(() => {
     const typeSpeed = 250;
     const deleteSpeed = 150;
     const pauseTime = 3000;
-    
+
     const typeWriter = () => {
       if (!isDeleting) {
         if (typewriterText.length < subtitle.length) {
@@ -55,45 +50,18 @@ const HeroSection = () => {
         }
       }
     };
-    
+
     const timer = setTimeout(typeWriter, isDeleting ? deleteSpeed : typeSpeed);
     return () => clearTimeout(timer);
   }, [typewriterText, isDeleting, subtitle]);
 
   return (
-    <section className="min-h-[90vh] flex items-center w-full pt-0 mt-0 relative overflow-hidden">
-      {/* Complete Cloud Overlay */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none bg-white"
-        style={{ zIndex: 60 }}
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 0 }}
-        transition={{ duration: 1, ease: 'easeOut', delay: 2.2 }}
-      />
-      
-      {/* Moving Clouds Synchronized with Airplane */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 50 }}
-        initial={{ x: '-60%', y: '100%', opacity: 1 }}
-        animate={{ x: '110%', y: '-50%', opacity: 0 }}
-        transition={{ duration: 6, ease: 'easeInOut' }}
-      >
-        {[...Array(35)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-white blur-sm"
-            style={{
-              width: `${35 + Math.random() * 50}vw`,
-              height: `${25 + Math.random() * 35}vh`,
-              left: `${(i % 8) * 15}%`,
-              top: `${Math.floor(i / 8) * 15}%`,
-              opacity: 0.95
-            }}
-          />
-        ))}
-      </motion.div>
-
+    <section
+      className="min-h-[90vh] flex items-center w-full pt-0 mt-0 relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #f8f2ff 0%, #eee6f7 100%)',
+      }}
+    >
       {/* Airplane Animation */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
@@ -113,7 +81,9 @@ const HeroSection = () => {
         transition={{
           duration: 6,
           ease: 'easeInOut',
-          times: [0, 0.1, 0.9, 1]
+          times: [0, 0.1, 0.9, 1],
+          repeat: Infinity,
+          repeatDelay: 8
         }}
       >
         <div className="relative">
@@ -121,49 +91,39 @@ const HeroSection = () => {
             src={airplanePng}
             alt="Flying airplane"
             className="absolute w-[35vw] max-w-[700px] min-w-[180px] h-auto"
-            style={{
-              filter: 'drop-shadow(0 0 12px rgba(107, 61, 154, 0.5))'
-            }}
           />
         </div>
       </motion.div>
-      
-      <div className="w-full max-w-7xl mx-auto px-2 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-center">
+
+
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-center">
           {/* Left Side - Text Content */}
           <motion.div
-           className="space-y-6 lg:col-span-3 lg:pr-2 lg:-ml-2"
+            className="space-y-4 sm:space-y-6 lg:col-span-3 lg:pr-2 lg:-ml-2 text-center lg:text-left"
             initial="hidden"
             animate="visible"
             variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.1
-                }
-              }
+              visible: { transition: { staggerChildren: 0.1 } }
             }}
           >
-            <motion.h1 
+            <motion.h1
               className="font-display font-bold leading-tight"
               variants={textVariants}
             >
               <motion.div
-                className="overflow-hidden text-4xl lg:text-5xl whitespace-nowrap"
+                className="overflow-hidden text-2xl sm:text-3xl md:text-4xl lg:text-5xl whitespace-nowrap"
                 initial="hidden"
                 animate="visible"
                 variants={{
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.05
-                    }
-                  }
+                  visible: { transition: { staggerChildren: 0.05 } }
                 }}
               >
                 {title.split('').map((char, index) => (
                   <motion.span
                     key={index}
                     className="inline-block"
-                    style={{color: '#6A3D9A'}}
+                    style={{ color: '#6A3D9A' }}
                     variants={letterVariants}
                   >
                     {char === ' ' ? '\u00A0' : char}
@@ -171,42 +131,44 @@ const HeroSection = () => {
                 ))}
               </motion.div>
               <motion.div
-                className="mt-2 text-4xl lg:text-5xl"
+                className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5 }}
               >
-                <span style={{color: '#6C9E24'}}>
+                <span style={{ color: '#6C9E24' }}>
                   {typewriterText}
-                  <span className="animate-pulse" style={{color: '#6C9E24'}}>|</span>
+                  <span className="animate-pulse" style={{ color: '#6C9E24' }}>
+                    |
+                  </span>
                 </span>
               </motion.div>
             </motion.h1>
 
-            <motion.p 
-              className="text-2xl font-display font-light leading-relaxed max-w-2xl"
-              style={{color: '#666666', letterSpacing: '0.3px'}}
+            <motion.p
+              className="text-lg sm:text-xl md:text-2xl font-display font-light leading-relaxed max-w-2xl"
+              style={{ color: '#666666', letterSpacing: '0.3px' }}
               variants={textVariants}
               transition={{ delay: 1.5 }}
             >
               Your reliable companion for international academic guidance, skill enhancement, and professional communication training.
             </motion.p>
 
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4 pt-4"
               variants={textVariants}
               transition={{ delay: 2 }}
             >
               <motion.button
-                className="px-8 py-4 rounded-lg text-white font-bold text-lg shadow-lg"
-                style={{backgroundColor: '#8B5FBF'}}
-                whileHover={{ 
+                className="px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-white font-bold text-base sm:text-lg shadow-lg w-full sm:w-auto"
+                style={{ backgroundColor: '#8B5FBF' }}
+                whileHover={{
                   backgroundColor: '#7FB83D',
                   scale: 1.05,
                   y: -2
                 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                transition={{ type: 'spring', stiffness: 400 }}
                 onClick={() => {
                   navigate('/courses');
                   window.scrollTo(0, 0);
@@ -214,8 +176,6 @@ const HeroSection = () => {
               >
                 Get Started
               </motion.button>
-              
-              
             </motion.div>
           </motion.div>
 
@@ -228,68 +188,16 @@ const HeroSection = () => {
           >
             <motion.div
               className="relative w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl"
-              style={{ scale: 1.2 }}
               whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: 'spring', stiffness: 300 }}
             >
               <motion.img
                 src={heroSvg}
                 alt="DRAMSVE Hero"
                 className="w-full h-auto object-contain rounded-3xl"
-                style={{ backgroundColor: 'transparent',transform: 'scale(1.1)'  }}
-                animate={{
-                  y: [0, -15, 0]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              {/* Floating decorative elements */}
-              <motion.div
-                className="absolute -top-8 -right-8 w-12 h-12 rounded-full opacity-80"
-                style={{backgroundColor: '#FBB03B'}}
-                animate={{
-                  scale: [1, 1.3, 1],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              <motion.div
-                className="absolute -bottom-6 -left-6 w-8 h-8 rounded-full opacity-80"
-                style={{backgroundColor: '#6C9E24'}}
-                animate={{
-                  scale: [1.2, 1, 1.2],
-                  rotate: [360, 180, 0]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1
-                }}
-              />
-              
-              <motion.div
-                className="absolute top-1/4 -left-4 w-6 h-6 rounded-full opacity-70"
-                style={{backgroundColor: '#6A3D9A'}}
-                animate={{
-                  y: [-10, 10, -10],
-                  opacity: [0.7, 1, 0.7]
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5
-                }}
+                style={{ backgroundColor: 'transparent' }}
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               />
             </motion.div>
           </motion.div>

@@ -65,7 +65,7 @@ const StatsSection = () => {
     >
       <div className="container relative z-10 mx-auto px-4" ref={ref}>
         <motion.h2 
-          className="font-display text-center text-4xl font-bold tracking-wide mb-4"
+          className="font-display text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-4"
           style={{color: '#6A3D9A', letterSpacing: '0.5px'}}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -84,7 +84,7 @@ const StatsSection = () => {
         </motion.p>
         
         <motion.div 
-          className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4"
+          className="mt-8 sm:mt-12 grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -92,9 +92,8 @@ const StatsSection = () => {
           {stats.map((stat, index) => (
             <motion.div 
               key={index}
-              className="relative bg-white text-center group overflow-hidden"
+              className="relative bg-white text-center group overflow-hidden p-6 sm:p-8 md:p-10"
               style={{
-                padding: '40px 50px',
                 borderRadius: '20px',
                 boxShadow: '0 6px 15px rgba(0, 0, 0, 0.08)'
               }}
@@ -107,12 +106,16 @@ const StatsSection = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <motion.div 
-                className="leading-none mb-4"
-                style={{fontSize: '48px', fontWeight: 700, color: '#6A3D9A'}}
+                className="flex items-center justify-center mb-4"
                 animate={inView ? { scale: [0.5, 1.1, 1] } : {}}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
               >
-                {stat.suffix === 'K+' ? Math.floor(counters[index] / 1000) + 'K+' : counters[index] + stat.suffix}
+                <span 
+                  className="text-4xl sm:text-5xl md:text-6xl font-bold text-center"
+                  style={{fontWeight: 700, color: '#6A3D9A', lineHeight: 1}}
+                >
+                  {stat.suffix === 'K+' ? Math.floor(counters[index] / 1000) + 'K+' : counters[index] + stat.suffix}
+                </span>
               </motion.div>
               <div className="flex items-center justify-center gap-2">
                 <span 
@@ -122,8 +125,8 @@ const StatsSection = () => {
                   {stat.icon}
                 </span>
                 <p 
-                  className="font-medium"
-                  style={{fontSize: '18px', fontWeight: 500, color: '#333333'}}
+                  className="font-medium text-sm sm:text-base md:text-lg text-center"
+                  style={{fontWeight: 500, color: '#333333'}}
                 >
                   {stat.label}
                 </p>

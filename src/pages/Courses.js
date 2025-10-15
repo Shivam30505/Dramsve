@@ -198,49 +198,38 @@ const Courses = () => {
     <div className="min-h-screen" style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}>
       <Header />
       
-      <main className="pt-20">
-        <section className="py-16 sm:py-24">
-          <div className="container mx-auto px-4" ref={ref}>
+      <main className="pt-16 sm:pt-20">
+        <section className="py-8 sm:py-16 md:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
             <motion.div 
-              className="text-center mb-12"
+              className="text-center mb-8 sm:mb-12"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
             >
               <h1 
-                className="text-3xl sm:text-4xl font-bold tracking-wide mb-4"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-4"
                 style={{color: '#6A3D9A', letterSpacing: '0.5px'}}
               >
                 Our Popular Courses
               </h1>
               <p 
-                className="max-w-2xl mx-auto text-lg"
+                className="max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-0"
                 style={{color: '#6C9E24', fontWeight: 300, letterSpacing: '0.3px', lineHeight: '1.6'}}
               >
                 Join thousands of students and professionals who have transformed their careers.
               </p>
             </motion.div>
 
-            <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={containerVariants}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {courses.map((course, index) => (
-                <motion.div 
+                <div 
                   key={index}
                   className="bg-white rounded-xl overflow-hidden group cursor-pointer"
                   style={{
                     boxShadow: '0 6px 15px rgba(0, 0, 0, 0.08)',
                     borderRadius: '20px'
                   }}
-                  variants={cardVariants}
-                  whileHover={{ 
-                    y: -8,
-                    boxShadow: "0 12px 25px rgba(106, 61, 154, 0.15)"
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
                   onClick={() => {
                     if (course.route) {
                       navigate(course.route);
@@ -250,7 +239,7 @@ const Courses = () => {
                   }}
                 >
                   <div 
-                    className="w-full h-48 bg-cover bg-center"
+                    className="w-full h-40 sm:h-48 bg-cover bg-center"
                     style={{
                       backgroundImage: (() => {
                         if (course.title === 'IELTS Academic Champion' || course.title === 'IELTS Academic Marathon' || course.title === 'IELTS General Champion' || course.title === 'IELTS General Marathon') {
@@ -272,7 +261,7 @@ const Courses = () => {
                     }}
                   />
                   
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6">
                     <h3 
                       className="text-lg font-bold mb-2 group-hover:text-purple-600 transition-colors"
                       style={{color: '#333333'}}
@@ -294,14 +283,9 @@ const Courses = () => {
                     <div className="flex items-center justify-between">
                       {renderStars(course.rating)}
                       
-                      <motion.button 
-                        className="px-5 py-2 rounded-lg text-sm font-bold text-white transition-all duration-300"
+                      <button 
+                        className="px-5 py-2 rounded-lg text-sm font-bold text-white transition-all duration-300 hover:bg-green-600"
                         style={{backgroundColor: '#6A3D9A'}}
-                        whileHover={{ 
-                          backgroundColor: '#6C9E24',
-                          scale: 1.05
-                        }}
-                        whileTap={{ scale: 0.95 }}
                         onClick={(e) => {
                           e.stopPropagation();
                           if (index === 0) {
@@ -355,12 +339,12 @@ const Courses = () => {
                         }}
                       >
                         <span className="truncate">View Details</span>
-                      </motion.button>
+                      </button>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>

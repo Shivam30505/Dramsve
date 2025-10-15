@@ -120,7 +120,7 @@ const CoursesSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 
-            className="font-display text-4xl font-bold tracking-wide mb-4"
+            className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-4"
             style={{color: '#6A3D9A', letterSpacing: '0.5px'}}
           >
             Our Courses
@@ -134,7 +134,7 @@ const CoursesSection = () => {
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
@@ -155,7 +155,18 @@ const CoursesSection = () => {
                 rotateY: 5
               }}
               transition={{ type: "spring", stiffness: 200 }}
-              onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+              // onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+              onClick={(e) => {
+                    e.stopPropagation();
+                    if (course.title === 'IELTS Preparation') {
+                      navigate('/course/ielts-academic-champion');
+                    } else if (course.title === 'Spoken English') {
+                      navigate('/course/english-champion');
+                    } else if (course.title === 'German Basics') {
+                      navigate('/course/german-language');
+                    }
+                    window.scrollTo(0, 0);
+                  }}
             >
               {/* Gradient overlay */}
               <motion.div
@@ -182,11 +193,11 @@ const CoursesSection = () => {
                 {course.image}
               </motion.div>
 
-              <div className="p-8 relative z-10">
+              <div className="p-4 sm:p-6 md:p-8 relative z-10">
                 {/* Course header */}
                 <div className="mb-6">
                   <motion.h3 
-                    className="text-2xl font-bold mb-3"
+                    className="text-xl sm:text-2xl font-bold mb-3"
                     style={{color: '#333333'}}
                     initial={{ opacity: 0, x: -20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}

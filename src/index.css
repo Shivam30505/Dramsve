@@ -8,9 +8,26 @@
   }
   body {
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Responsive text sizes */
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+  h3 {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+  
+  /* Prevent body scroll when mobile menu is open */
+  body.mobile-menu-open {
+    @apply overflow-hidden;
   }
 }
 
@@ -77,11 +94,6 @@
 
 .hero-title {
   animation: fadeInUp 1s ease-out 0.2s both;
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
@@ -97,44 +109,7 @@
   backdrop-filter: blur(1px);
 }
 
-.floating-elements {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-}
 
-.floating-element {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
-}
-
-.floating-element:nth-child(1) {
-  width: 80px;
-  height: 80px;
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.floating-element:nth-child(2) {
-  width: 60px;
-  height: 60px;
-  top: 60%;
-  right: 15%;
-  animation-delay: 2s;
-}
-
-.floating-element:nth-child(3) {
-  width: 40px;
-  height: 40px;
-  top: 30%;
-  right: 30%;
-  animation-delay: 4s;
-}
 
 .hero-button-primary {
   background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
@@ -333,4 +308,95 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stat-card {
+    @apply p-4;
+  }
+  
+  .stat-number {
+    @apply text-4xl;
+  }
+  
+  .stat-label {
+    @apply text-lg;
+  }
+  
+  .review-card {
+    min-width: 280px;
+    max-width: 320px;
+    height: auto;
+    margin: 0 8px;
+    padding: 16px;
+  }
+  
+  .student-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .partners-grid {
+    gap: 30px;
+  }
+  
+  .partner-logo {
+    height: 60px;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-card {
+    min-width: 260px;
+    max-width: 280px;
+  }
+  
+  .partners-grid {
+    gap: 20px;
+  }
+  
+  .partner-logo {
+    height: 50px;
+    max-width: 120px;
+  }
+  
+  /* Ensure courses section is visible on mobile */
+  main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  section {
+    flex: 1;
+    min-height: auto;
+  }
+  
+  /* Mobile menu background fix */
+  .mobile-menu {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Force white background for mobile menu */
+  .md\:hidden.fixed.inset-0.z-40 {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Mobile menu overlay */
+  .mobile-menu-overlay {
+    position: fixed !important;
+    top: 80px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    z-index: 40 !important;
+  }
 }

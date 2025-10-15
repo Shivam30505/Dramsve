@@ -10,6 +10,8 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    courseInterest: '',
     message: ''
   });
 
@@ -25,8 +27,8 @@ const ContactSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.name || !formData.message) {
-      setSubmitMessage('Please fill all fields');
+    if (!formData.email || !formData.name || !formData.phone || !formData.message) {
+      setSubmitMessage('Please fill all required fields');
       return;
     }
     
@@ -34,7 +36,7 @@ const ContactSection = () => {
     // Simulate form submission
     setTimeout(() => {
       setSubmitMessage('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', courseInterest: '', message: '' });
       setIsSubmitting(false);
     }, 1000);
   };
@@ -144,8 +146,50 @@ const ContactSection = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.6, duration: 0.6 }}
               >
+                <label className="block text-sm font-medium mb-2" style={{color: '#333333'}} htmlFor="phone">
+                  Phone Number *
+                </label>
+                <motion.input
+                  className="form-input block w-full rounded-lg border-gray-300 bg-white p-3 focus:border-primary focus:ring-primary"
+                  style={{color: '#333333'}}
+                  id="phone"
+                  placeholder="Your Phone Number"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  variants={inputVariants}
+                  whileFocus="focus"
+                />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.7, duration: 0.6 }}
+              >
+                <label className="block text-sm font-medium mb-2" style={{color: '#333333'}} htmlFor="courseInterest">
+                  Course Interest
+                </label>
+                <motion.input
+                  className="form-input block w-full rounded-lg border-gray-300 bg-white p-3 focus:border-primary focus:ring-primary"
+                  style={{color: '#333333'}}
+                  id="courseInterest"
+                  placeholder="Enter course you're interested in"
+                  type="text"
+                  value={formData.courseInterest}
+                  onChange={handleInputChange}
+                  variants={inputVariants}
+                  whileFocus="focus"
+                />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.8, duration: 0.6 }}
+              >
                 <label className="block text-sm font-medium mb-2" style={{color: '#333333'}} htmlFor="message">
-                  Message
+                  Message *
                 </label>
                 <motion.textarea
                   className="form-textarea block w-full rounded-lg border-gray-300 bg-white p-3 focus:border-primary focus:ring-primary"

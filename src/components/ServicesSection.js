@@ -30,6 +30,11 @@ const ServicesSection = () => {
       icon: '📋',
       title: 'Visa Application',
       description: 'Assistance in obtaining visas with document preparation and interview coaching.'
+    },
+    {
+      icon: '🎯',
+      title: 'Career Counseling',
+      description: 'Professional guidance to help you make informed career decisions and achieve your goals.'
     }
   ];
 
@@ -86,25 +91,26 @@ const ServicesSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {/* First row - 3 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-            {services.slice(0, 3).map((service, index) => (
-              <motion.div 
-                key={index}
-                className="bg-white rounded-xl overflow-hidden flex flex-col group"
-                style={{
-                  boxShadow: '0 6px 15px rgba(0, 0, 0, 0.08)',
-                  borderRadius: '20px'
-                }}
-                variants={cardVariants}
-                whileHover={{ 
-                  y: -8,
-                  boxShadow: "0 12px 25px rgba(106, 61, 154, 0.15)"
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="p-8 flex flex-col items-center text-center h-full">
+          {services.map((service, index) => (
+            <motion.div 
+              key={index}
+              className="bg-white rounded-xl overflow-hidden flex flex-col group h-full"
+              style={{
+                boxShadow: '0 6px 15px rgba(0, 0, 0, 0.08)',
+                borderRadius: '20px',
+                minHeight: '320px'
+              }}
+              variants={cardVariants}
+              whileHover={{ 
+                y: -8,
+                boxShadow: "0 12px 25px rgba(106, 61, 154, 0.15)"
+              }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="p-8 flex flex-col items-center text-center h-full justify-between">
+                <div className="flex flex-col items-center">
                   <motion.div 
                     className="p-4 rounded-full mb-6"
                     style={{backgroundColor: 'rgba(106, 61, 154, 0.1)'}}
@@ -118,70 +124,21 @@ const ServicesSection = () => {
                   </motion.div>
                   
                   <h3 
-                    className="text-xl font-bold mb-4"
+                    className="text-xl font-bold mb-4 min-h-[3.5rem] flex items-center"
                     style={{color: '#333333'}}
                   >
                     {service.title}
                   </h3>
-                  <p 
-                    className="text-base"
-                    style={{color: '#666666'}}
-                  >
-                    {service.description}
-                  </p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          {/* Second row - 2 centered cards */}
-          <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl">
-              {services.slice(3, 5).map((service, index) => (
-                <motion.div 
-                  key={index + 3}
-                  className="bg-white rounded-xl overflow-hidden flex flex-col group"
-                  style={{
-                    boxShadow: '0 6px 15px rgba(0, 0, 0, 0.08)',
-                    borderRadius: '20px'
-                  }}
-                  variants={cardVariants}
-                  whileHover={{ 
-                    y: -8,
-                    boxShadow: "0 12px 25px rgba(106, 61, 154, 0.15)"
-                  }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                <p 
+                  className="text-base flex-1 flex items-center"
+                  style={{color: '#666666'}}
                 >
-                  <div className="p-8 flex flex-col items-center text-center h-full">
-                    <motion.div 
-                      className="p-4 rounded-full mb-6"
-                      style={{backgroundColor: 'rgba(106, 61, 154, 0.1)'}}
-                      whileHover={{ 
-                        scale: 1.1,
-                        backgroundColor: 'rgba(108, 158, 36, 0.1)'
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <span className="text-4xl">{service.icon}</span>
-                    </motion.div>
-                    
-                    <h3 
-                      className="text-xl font-bold mb-4"
-                      style={{color: '#333333'}}
-                    >
-                      {service.title}
-                    </h3>
-                    <p 
-                      className="text-base"
-                      style={{color: '#666666'}}
-                    >
-                      {service.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+                  {service.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
