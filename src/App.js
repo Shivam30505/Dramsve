@@ -10,7 +10,7 @@ import IeltsAcademicChampion from './pages/IeltsAcademicChampion';
 import IeltsAcademicMarathon from './pages/IeltsAcademicMarathon';
 import IeltsGeneralChampion from './pages/IeltsGeneralChampion';
 import IeltsGeneralMarathon from './pages/IeltsGeneralMarathon';
-import IeltsReadingMarathon from './pages/IeltsReadingMarathon';
+
 import PteAcademic from './pages/PteAcademic';
 import DuolingoEnglish from './pages/DuolingoEnglish';
 import ToeflIbt from './pages/ToeflIbt';

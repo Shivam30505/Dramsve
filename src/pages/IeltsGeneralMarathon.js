@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const CounterCard = ({ metric, index }) => {
   const [count, setCount] = useState(0);
-  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
+
 
   useEffect(() => {
     if (inView) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useContact } from '../contexts/ContactContext';
@@ -12,7 +12,6 @@ const GermanLanguage = () => {
   const [benefitsRef, benefitsInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ctaRef, ctaInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const { openContact } = useContact();
-  
 
   const whyLearnGerman = [
     {

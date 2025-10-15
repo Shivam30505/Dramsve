@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useContact } from '../contexts/ContactContext';
@@ -146,25 +146,6 @@ const CareerMentor = () => {
     }
   ];
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
   return (
     <div className="min-h-screen" style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}>
       <Header />
@@ -310,9 +291,8 @@ const CareerMentor = () => {
               
               <motion.div 
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                variants={containerVariants}
-                initial="hidden"
-                animate={inView ? "visible" : "hidden"}
+initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
               >
                 {programBenefits.map((item, index) => (
                   <motion.div

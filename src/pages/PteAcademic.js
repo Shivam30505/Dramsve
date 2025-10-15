@@ -1,55 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useContact } from '../contexts/ContactContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
-const CounterCard = ({ metric, index }) => {
-  const [count, setCount] = useState(0);
-  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
-
-
-  useEffect(() => {
-    if (inView) {
-      const duration = 2000;
-      const steps = 60;
-      const increment = metric.value / steps;
-      let current = 0;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= metric.value) {
-          setCount(metric.value);
-          clearInterval(timer);
-        } else {
-          setCount(current);
-        }
-      }, duration / steps);
-      
-      return () => clearInterval(timer);
-    }
-  }, [inView, metric.value]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className="bg-white rounded-xl p-6 text-center shadow-lg"
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
-      whileHover={{ 
-        y: -5,
-        boxShadow: "0 12px 25px rgba(106, 61, 154, 0.15)"
-      }}
-    >
-      <div className="text-3xl font-bold mb-2" style={{color: '#6A3D9A'}}>
-        {metric.value === 4.9 ? count.toFixed(1) : Math.floor(count)}{metric.suffix}
-      </div>
-      <p style={{color: '#666666'}}>{metric.label}</p>
-    </motion.div>
-  );
-};
 
 const PteAcademic = () => {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });

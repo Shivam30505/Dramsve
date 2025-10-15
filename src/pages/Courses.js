@@ -18,10 +18,15 @@ import tofelImage from '../images/tofel.jpg';
 import gmatImage from '../images/gmat.jpg';
 
 const Courses = () => {
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const navigate = useNavigate();
   const [isIELTSModalOpen, setIsIELTSModalOpen] = useState(false);
   const [selectedIELTSProgram, setSelectedIELTSProgram] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  React.useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const ieltsPrograms = [
     {
@@ -191,24 +196,13 @@ const Courses = () => {
     setSelectedIELTSProgram(null);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
   const cardVariants = {
-    hidden: { opacity: 0, y: 60, rotateX: -15 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.4,
         ease: "easeOut"
       }
     }
@@ -253,6 +247,23 @@ const Courses = () => {
 
   return (
     <div className="min-h-screen w-full" style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .course-card {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            min-height: 400px;
+            display: flex !important;
+            flex-direction: column;
+          }
+          .course-grid {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            gap: 1rem !important;
+          }
+        }
+      `}</style>
       <Header />
       
       <main className="pt-16 sm:pt-20 w-full">
@@ -278,17 +289,20 @@ const Courses = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
+            <div className="course-grid grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
               {courses.map((course, index) => (
                 <motion.div 
                   key={index}
                   variants={cardVariants}
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                  className="bg-white rounded-lg sm:rounded-xl overflow-hidden group cursor-pointer w-full max-w-sm mx-auto sm:max-w-none"
+                  initial={false}
+                  animate={inView && isLoaded ? "visible" : "hidden"}
+                  transition={{ delay: Math.min(index * 0.05, 0.5) }}
+                  className="course-card bg-white rounded-xl overflow-hidden group cursor-pointer w-full opacity-100 visible"
                   style={{
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-                    borderRadius: '16px'
+                    minHeight: '400px',
+                    display: 'flex',
+                    flexDirection: 'column'
                   }}
                   onClick={() => {
                     if (course.hasVariants) {
@@ -301,7 +315,7 @@ const Courses = () => {
                   }}
                 >
                   <div 
-                    className="w-full h-32 sm:h-40 md:h-48 bg-cover bg-center"
+                    className="w-full h-48 bg-cover bg-center flex-shrink-0"
                     style={{
                       backgroundImage: (() => {
                         if (course.title === 'IELTS Preparation') {
@@ -335,7 +349,7 @@ const Courses = () => {
                     }}
                   />
                   
-                  <div className="p-3 sm:p-4 md:p-6 w-full">
+                  <div className="p-4 w-full flex-1 flex flex-col">
                     <h3 
                       className="text-base sm:text-lg font-bold mb-2 group-hover:text-purple-600 transition-colors"
                       style={{color: '#333333'}}
@@ -358,11 +372,11 @@ const Courses = () => {
                       </span>
                     </div>
                     
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mt-auto">
                       {renderStars(course.rating)}
                       
                       <button 
-                        className="w-full sm:w-auto px-3 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold text-white transition-all duration-300 hover:bg-green-600"
+                        className="w-full sm:w-auto px-4 py-2 rounded-lg text-sm font-bold text-white transition-all duration-300 hover:bg-green-600"
                         style={{backgroundColor: '#6A3D9A'}}
                         onClick={(e) => {
                           e.stopPropagation();

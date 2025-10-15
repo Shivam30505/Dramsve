@@ -107,14 +107,6 @@ const DigitalSat = () => {
 			transition: { duration: 0.6, ease: "easeOut" }
 		}
 	};
-	const containerVariants = {
-		hidden: { opacity: 0 },
-		visible: {
-			opacity: 1,
-			transition: { staggerChildren: 0.1 }
-		}
-	};
-
 	return (
 		<div className="min-h-screen" style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}>
 			<Header />

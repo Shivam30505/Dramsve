@@ -11,7 +11,7 @@ const ToeflIbt = () => {
   const [courseRef, courseInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [benefitsRef, benefitsInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ctaRef, ctaInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [openFaq, setOpenFaq] = useState(null);
+
   const { openContact } = useContact();
 
   const keyBenefits = [
