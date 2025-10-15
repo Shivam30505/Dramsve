@@ -443,22 +443,43 @@
     }
     
     /* Mobile courses page visibility */
+    body {
+      overflow-x: hidden !important;
+    }
+    
     main {
       min-height: 100vh !important;
-      padding-top: 3.5rem !important;
+      padding-top: 4rem !important;
       display: flex !important;
       flex-direction: column !important;
+      width: 100% !important;
     }
     
     section {
       flex: 1 !important;
-      min-height: calc(100vh - 3.5rem) !important;
-      padding: 1.5rem 0 !important;
+      min-height: calc(100vh - 4rem) !important;
+      padding: 1rem 0 !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
     }
     
     .container {
-      padding-left: 1rem !important;
-      padding-right: 1rem !important;
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    /* Ensure course cards are visible */
+    .grid {
+      width: 100% !important;
+      display: grid !important;
+    }
+    
+    /* Course card mobile optimization */
+    .bg-white {
+      margin-bottom: 1rem !important;
     }
   }
   

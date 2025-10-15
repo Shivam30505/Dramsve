@@ -252,43 +252,43 @@ const Courses = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}>
+    <div className="min-h-screen w-full" style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}>
       <Header />
       
-      <main className="pt-16 sm:pt-20">
-        <section className="py-8 sm:py-16 md:py-24 min-h-screen">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+      <main className="pt-16 sm:pt-20 w-full">
+        <section className="py-8 sm:py-16 md:py-24 min-h-screen w-full">
+          <div className="container mx-auto px-2 sm:px-4 lg:px-8 w-full" ref={ref}>
             <motion.div 
-              className="text-center mb-8 sm:mb-12"
+              className="text-center mb-6 sm:mb-8 md:mb-12 px-2"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
             >
               <h1 
-                className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-4"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide mb-3 sm:mb-4"
                 style={{color: '#6A3D9A', letterSpacing: '0.5px'}}
               >
                 Our Popular Courses
               </h1>
               <p 
-                className="max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-0"
+                className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-2 sm:px-4 md:px-0"
                 style={{color: '#6C9E24', fontWeight: 300, letterSpacing: '0.3px', lineHeight: '1.6'}}
               >
                 Join thousands of students and professionals who have transformed their careers.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
               {courses.map((course, index) => (
                 <motion.div 
                   key={index}
                   variants={cardVariants}
                   initial="hidden"
                   animate={inView ? "visible" : "hidden"}
-                  className="bg-white rounded-xl overflow-hidden group cursor-pointer"
+                  className="bg-white rounded-lg sm:rounded-xl overflow-hidden group cursor-pointer w-full max-w-sm mx-auto sm:max-w-none"
                   style={{
-                    boxShadow: '0 6px 15px rgba(0, 0, 0, 0.08)',
-                    borderRadius: '20px'
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                    borderRadius: '16px'
                   }}
                   onClick={() => {
                     if (course.hasVariants) {
@@ -301,7 +301,7 @@ const Courses = () => {
                   }}
                 >
                   <div 
-                    className="w-full h-40 sm:h-48 bg-cover bg-center"
+                    className="w-full h-32 sm:h-40 md:h-48 bg-cover bg-center"
                     style={{
                       backgroundImage: (() => {
                         if (course.title === 'IELTS Preparation') {
@@ -335,7 +335,7 @@ const Courses = () => {
                     }}
                   />
                   
-                  <div className="p-3 sm:p-4 md:p-6">
+                  <div className="p-3 sm:p-4 md:p-6 w-full">
                     <h3 
                       className="text-base sm:text-lg font-bold mb-2 group-hover:text-purple-600 transition-colors"
                       style={{color: '#333333'}}
@@ -347,7 +347,7 @@ const Courses = () => {
                       {course.description}
                     </p>
                     
-                    <div className="flex items-center justify-between text-xs sm:text-sm mb-4" style={{color: '#666666'}}>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm mb-4 gap-2 sm:gap-0" style={{color: '#666666'}}>
                       <span className="flex items-center gap-1.5">
                         <span className="material-symbols-outlined text-base">schedule</span>
                         {course.duration}
@@ -358,11 +358,11 @@ const Courses = () => {
                       </span>
                     </div>
                     
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
                       {renderStars(course.rating)}
                       
                       <button 
-                        className="px-3 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold text-white transition-all duration-300 hover:bg-green-600"
+                        className="w-full sm:w-auto px-3 sm:px-5 py-2 rounded-lg text-xs sm:text-sm font-bold text-white transition-all duration-300 hover:bg-green-600"
                         style={{backgroundColor: '#6A3D9A'}}
                         onClick={(e) => {
                           e.stopPropagation();
