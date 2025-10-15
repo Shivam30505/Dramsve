@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import AboutUsSection from '../components/AboutUsSection';
 
 const AboutUs = () => {
   return (
@@ -14,12 +15,7 @@ const AboutUs = () => {
       <div className="flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
         <Header />
         <main className="flex-1 pt-20">
-          <section className="py-16 md:py-24">
-            <div className="container mx-auto px-6">
-              <h1 className="text-4xl font-bold text-center mb-8" style={{color: '#6A3D9A'}}>About Us</h1>
-              <p className="text-lg text-center max-w-4xl mx-auto" style={{color: '#666666'}}>Learn more about DRAMSVE and our mission to provide quality education and training.</p>
-            </div>
-          </section>
+          <AboutUsSection />
         </main>
         <Footer />
       </div>
