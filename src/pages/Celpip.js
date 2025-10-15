@@ -307,7 +307,7 @@ const Celpip = () => {
                     whileTap={{ scale: 0.95 }}
                     onClick={openContact}
                   >
-                    Start Free Trail
+                    Start Free Trial
                   </motion.button>
                 </motion.div>
               </div>
