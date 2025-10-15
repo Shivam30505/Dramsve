@@ -18,14 +18,14 @@ import tofelImage from '../images/tofel.jpg';
 import gmatImage from '../images/gmat.jpg';
 
 const Courses = () => {
-  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
+  const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true });
   const navigate = useNavigate();
   const [isIELTSModalOpen, setIsIELTSModalOpen] = useState(false);
   const [selectedIELTSProgram, setSelectedIELTSProgram] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   React.useEffect(() => {
-    setIsLoaded(true);
+    setIsMobile(window.innerWidth < 768);
   }, []);
 
   const ieltsPrograms = [
@@ -247,20 +247,23 @@ const Courses = () => {
 
   return (
     <div className="min-h-screen w-full" style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}>
-      <style jsx>{`
+      <style>{`
+        .course-card {
+          opacity: 1 !important;
+          visibility: visible !important;
+          transform: none !important;
+          display: flex !important;
+          flex-direction: column !important;
+        }
         @media (max-width: 768px) {
-          .course-card {
-            opacity: 1 !important;
-            visibility: visible !important;
-            transform: none !important;
-            min-height: 400px;
-            display: flex !important;
-            flex-direction: column;
-          }
           .course-grid {
             display: grid !important;
             grid-template-columns: 1fr !important;
             gap: 1rem !important;
+          }
+          .course-card {
+            min-height: 350px !important;
+            margin-bottom: 1rem;
           }
         }
       `}</style>
@@ -269,12 +272,7 @@ const Courses = () => {
       <main className="pt-16 sm:pt-20 w-full">
         <section className="py-8 sm:py-16 md:py-24 min-h-screen w-full">
           <div className="container mx-auto px-2 sm:px-4 lg:px-8 w-full" ref={ref}>
-            <motion.div 
-              className="text-center mb-6 sm:mb-8 md:mb-12 px-2"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-            >
+            <div className="text-center mb-6 sm:mb-8 md:mb-12 px-2">
               <h1 
                 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide mb-3 sm:mb-4"
                 style={{color: '#6A3D9A', letterSpacing: '0.5px'}}
@@ -287,22 +285,20 @@ const Courses = () => {
               >
                 Join thousands of students and professionals who have transformed their careers.
               </p>
-            </motion.div>
+            </div>
 
             <div className="course-grid grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
               {courses.map((course, index) => (
-                <motion.div 
+                <div 
                   key={index}
-                  variants={cardVariants}
-                  initial={false}
-                  animate={inView && isLoaded ? "visible" : "hidden"}
-                  transition={{ delay: Math.min(index * 0.05, 0.5) }}
-                  className="course-card bg-white rounded-xl overflow-hidden group cursor-pointer w-full opacity-100 visible"
+                  className="course-card bg-white rounded-xl overflow-hidden cursor-pointer w-full"
                   style={{
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
                     minHeight: '400px',
                     display: 'flex',
-                    flexDirection: 'column'
+                    flexDirection: 'column',
+                    opacity: 1,
+                    visibility: 'visible'
                   }}
                   onClick={() => {
                     if (course.hasVariants) {
@@ -396,7 +392,7 @@ const Courses = () => {
                       </button>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
