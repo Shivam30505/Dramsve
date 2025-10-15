@@ -97,10 +97,10 @@ const HeroSection = () => {
 
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh]">
           {/* Left Side - Text Content */}
           <motion.div
-            className="space-y-4 sm:space-y-6 lg:col-span-3 lg:pr-2 lg:-ml-2 text-center lg:text-left"
+            className="space-y-6 text-center lg:text-left order-2 lg:order-1"
             initial="hidden"
             animate="visible"
             variants={{
@@ -112,7 +112,7 @@ const HeroSection = () => {
               variants={textVariants}
             >
               <motion.div
-                className="overflow-hidden text-2xl sm:text-3xl md:text-4xl lg:text-5xl whitespace-nowrap"
+                className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight"
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -131,7 +131,7 @@ const HeroSection = () => {
                 ))}
               </motion.div>
               <motion.div
-                className="mt-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+                className="mt-2 text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5 }}
@@ -146,7 +146,7 @@ const HeroSection = () => {
             </motion.h1>
 
             <motion.p
-              className="text-lg sm:text-xl md:text-2xl font-display font-light leading-relaxed max-w-2xl"
+              className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-display font-light leading-relaxed max-w-2xl mx-auto lg:mx-0"
               style={{ color: '#666666', letterSpacing: '0.3px' }}
               variants={textVariants}
               transition={{ delay: 1.5 }}
@@ -155,12 +155,12 @@ const HeroSection = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 pt-4"
+              className="flex justify-center lg:justify-start pt-4"
               variants={textVariants}
               transition={{ delay: 2 }}
             >
               <motion.button
-                className="px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-white font-bold text-base sm:text-lg shadow-lg w-full sm:w-auto"
+                className="px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-white font-bold text-sm sm:text-base lg:text-lg shadow-lg w-full sm:w-auto max-w-xs sm:max-w-none"
                 style={{ backgroundColor: '#8B5FBF' }}
                 whileHover={{
                   backgroundColor: '#7FB83D',
@@ -181,22 +181,22 @@ const HeroSection = () => {
 
           {/* Right Side - Hero SVG */}
           <motion.div
-            className="relative flex items-center justify-center lg:col-span-2"
+            className="relative flex items-center justify-center order-1 lg:order-2"
             initial={{ opacity: 0, x: 100, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
             <motion.div
-              className="relative w-full max-w-2xl lg:max-w-3xl xl:max-w-4xl"
+              className="relative w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl"
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
               <motion.img
                 src={heroSvg}
                 alt="DRAMSVE Hero"
-                className="w-full h-auto object-contain rounded-3xl"
+                className="w-full h-auto object-contain rounded-2xl lg:rounded-3xl"
                 style={{ backgroundColor: 'transparent' }}
-                animate={{ y: [0, -15, 0] }}
+                animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               />
             </motion.div>
