@@ -298,7 +298,7 @@ initial={{ opacity: 0 }}
                   <motion.div
                     key={index}
                     className="bg-white rounded-xl p-6 shadow-lg"
-                    variants={cardVariants}
+                    // variants={cardVariants}
                     whileHover={{ 
                       y: -5,
                       scale: 1.02,

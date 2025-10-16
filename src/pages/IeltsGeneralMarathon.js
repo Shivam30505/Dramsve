@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const CounterCard = ({ metric, index }) => {
   const [count, setCount] = useState(0);
-
+const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
 
   useEffect(() => {
     if (inView) {
@@ -32,7 +32,7 @@ const CounterCard = ({ metric, index }) => {
 
   return (
     <motion.div
-      ref={ref}
+      // ref={ref}
       className="bg-white rounded-xl p-6 text-center shadow-lg"
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}

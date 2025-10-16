@@ -312,7 +312,7 @@ const Celpip = () => {
               
               <motion.div 
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                variants={containerVariants}
+                // variants={containerVariants}
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
               >
@@ -320,7 +320,7 @@ const Celpip = () => {
                   <motion.div
                     key={index}
                     className="bg-white rounded-xl p-6 shadow-lg"
-                    variants={cardVariants}
+                    // variants={cardVariants}
                     whileHover={{ 
                       y: -5,
                       scale: 1.02,
