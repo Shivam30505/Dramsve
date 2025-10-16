@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import MobileDesktopPrompt from '../components/MobileDesktopPrompt';
 import StatsSection from '../components/StatsSection';
 import ServicesSection from '../components/ServicesSection';
 import CoursesSection from '../components/CoursesSection';
@@ -270,6 +271,7 @@ const Home = () => {
           <div id="blogs"><BlogsSection /></div>
         </main>
         <Footer />
+        <MobileDesktopPrompt />
       </div>
     </motion.div>
   );
