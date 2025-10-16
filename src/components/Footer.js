@@ -189,7 +189,7 @@ const Footer = () => {
                 whileHover={{ x: 5, color: "#ffffff" }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                123 Education Lane, Global City, 12345
+                Nashik, India
               </motion.li>
               <motion.li
                 whileHover={{ x: 5, color: "#ffffff" }}

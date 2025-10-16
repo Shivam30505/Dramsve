@@ -113,19 +113,7 @@ const PartnersSection = () => {
           </motion.div>
         </div>
 
-        {/* Gradient overlays to hide edges */}
-        <div 
-          className="absolute left-0 top-0 h-full w-32 pointer-events-none z-10"
-          style={{
-            background: 'linear-gradient(to right, rgba(247,247,247,1), rgba(247,247,247,0))'
-          }}
-        />
-        <div 
-          className="absolute right-0 top-0 h-full w-32 pointer-events-none z-10"
-          style={{
-            background: 'linear-gradient(to left, rgba(247,247,247,1), rgba(247,247,247,0))'
-          }}
-        />
+      
       </div>
     </section>
   );
