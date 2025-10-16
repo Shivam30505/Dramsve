@@ -245,7 +245,7 @@ const Courses = () => {
       </div>
     );
   };
-// hello
+
   return (
     <div className="min-h-screen w-full" style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}>
       <style>{`
