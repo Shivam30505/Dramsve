@@ -9,15 +9,18 @@ const Footer = () => {
   const socialIcons = [
     {
       name: 'Twitter',
-      path: 'M22.46,6.52,16.89,6.28a1.23,1.23,0,0,0-1.12.87,1.18,1.18,0,0,0,.43,1.3l2.84,2.23a.13.13,0,0,1,0,.2L14.7,14.77a.13.13,0,0,1-.2,0L12.27,12a1.18,1.18,0,0,0-1.3-.43,1.23,1.23,0,0,0-.87,1.12l-.24,5.57a1.2,1.2,0,0,0,1.2,1.2H17.5a6.5,6.5,0,0,0,6.5-6.5V7.72A1.2,1.2,0,0,0,22.46,6.52ZM4.9,2.5A2.4,2.4,0,0,0,2.5,4.9V10A2.4,2.4,0,0,0,4.9,12.4H10A2.4,2.4,0,0,0,12.4,10V4.9A2.4,2.4,0,0,0,10,2.5Z'
+      path: 'M22.46,6.52,16.89,6.28a1.23,1.23,0,0,0-1.12.87,1.18,1.18,0,0,0,.43,1.3l2.84,2.23a.13.13,0,0,1,0,.2L14.7,14.77a.13.13,0,0,1-.2,0L12.27,12a1.18,1.18,0,0,0-1.3-.43,1.23,1.23,0,0,0-.87,1.12l-.24,5.57a1.2,1.2,0,0,0,1.2,1.2H17.5a6.5,6.5,0,0,0,6.5-6.5V7.72A1.2,1.2,0,0,0,22.46,6.52ZM4.9,2.5A2.4,2.4,0,0,0,2.5,4.9V10A2.4,2.4,0,0,0,4.9,12.4H10A2.4,2.4,0,0,0,12.4,10V4.9A2.4,2.4,0,0,0,10,2.5Z',
+      url: 'https://twitter.com/dramsve' // Replace with your actual Twitter URL
     },
     {
       name: 'Facebook',
-      path: 'M22,12c0-5.52-4.48-10-10-10S2,6.48,2,12c0,4.99,3.66,9.13,8.44,9.88V15.5H8.29v-3.48h2.15V9.61c0-2.12,1.26-3.28,3.2-3.28.91,0,1.85.07,2.78.14v3.08h-1.8c-1.03,0-1.23.49-1.23,1.2v1.58h3.42l-.44,3.48h-2.98v6.38A10,10,0,0,0,22,12Z'
+      path: 'M22,12c0-5.52-4.48-10-10-10S2,6.48,2,12c0,4.99,3.66,9.13,8.44,9.88V15.5H8.29v-3.48h2.15V9.61c0-2.12,1.26-3.28,3.2-3.28.91,0,1.85.07,2.78.14v3.08h-1.8c-1.03,0-1.23.49-1.23,1.2v1.58h3.42l-.44,3.48h-2.98v6.38A10,10,0,0,0,22,12Z',
+      url: 'https://facebook.com/dramsve' // Replace with your actual Facebook URL
     },
     {
       name: 'Instagram',
-      path: 'M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm6.46,14.61a6.08,6.08,0,0,1-1.6,1.6,6.08,6.08,0,0,1-1.6,1.6,3.12,3.12,0,0,1-2.26,0,6.08,6.08,0,0,1-1.6-1.6,6.08,6.08,0,0,1-1.6-1.6,3.12,3.12,0,0,1,0-2.26,6.08,6.08,0,0,1,1.6-1.6,6.08,6.08,0,0,1,1.6-1.6,3.12,3.12,0,0,1,2.26,0,6.08,6.08,0,0,1,1.6,1.6,6.08,6.08,0,0,1,1.6,1.6A3.12,3.12,0,0,1,18.46,14.61ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Z'
+      path: 'M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM17.5 7a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z',
+      url: 'https://www.instagram.com/dramsve_edu?igsh=bXU5czI4cDhkeHhy' // Replace with your actual Instagram URL
     }
   ];
 
@@ -65,6 +68,11 @@ const Footer = () => {
       navigate(link.path);
       window.scrollTo(0, 0);
     }
+  };
+
+  const handleSocialClick = (url) => {
+    // Open social media link in a new tab
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const containerVariants = {
@@ -212,10 +220,10 @@ const Footer = () => {
               transition={{ delay: 0.5, duration: 0.6 }}
             >
               {socialIcons.map((icon, index) => (
-                <motion.a 
+                <motion.button 
                   key={index}
-                  className="text-gray-400 hover:text-white transition-colors" 
-                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors cursor-pointer" 
+                  onClick={() => handleSocialClick(icon.url)}
                   whileHover={{ 
                     scale: 1.2,
                     rotate: 360,
@@ -223,11 +231,12 @@ const Footer = () => {
                   }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 400 }}
+                  aria-label={`Visit our ${icon.name} page`}
                 >
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d={icon.path}></path>
                   </svg>
-                </motion.a>
+                </motion.button>
               ))}
             </motion.div>
           </motion.div>

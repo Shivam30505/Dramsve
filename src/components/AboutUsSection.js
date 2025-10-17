@@ -33,32 +33,32 @@ const AboutUsSection = () => {
     {
       icon: "school",
       title: "Certified & Experienced Trainers",
-      description: "Learn from certified and experienced mentors in international education."
+      description: "Gain guidance from certified and seasoned mentors in the field of international education."
     },
     {
       icon: "groups",
       title: "Small Batch Sizes",
-      description: "Exclusive class size for personalized attention."
+      description: "Exclusive seats and individual attention."
     },
     {
       icon: "trending_up",
       title: "Regular Mock Tests & Progress Tracking",
-      description: "Track your progress with regular mock tests and detailed feedback."
+      description: "Monitor your growth through frequent mock tests and detailed performance reviews."
     },
     {
       icon: "schedule",
       title: "Flexible Timings",
-      description: "Choose a class schedule that suits your needs the best."
+      description: "Learn at your own pace with a schedule that suits you."
     },
     {
       icon: "work",
       title: "Career Guidance & Admission Counseling",
-      description: "Navigate your career and university path with our experts."
+      description: "Let our experienced mentors guide and support you in your career journey."
     },
     {
       icon: "diversity_3",
       title: "Vibrant Community",
-      description: "Join a supportive community of learners and mentors"
+      description: "Become part of a community of dedicated learners and experienced mentors."
     }
   ];
 
@@ -76,10 +76,10 @@ const AboutUsSection = () => {
           >
             <span className="text-sm font-bold uppercase tracking-widest" style={{color: '#6A3D9A'}}>About Us</span>
             <h2 className="text-4xl md:text-5xl font-extrabold mt-4 mb-6 leading-tight" style={{color: '#333'}}>
-              This is DRAMSVE - Your Gateway to Global Academic Opportunities
+              <span style={{color: '#6A3D9A'}}>DR</span><span style={{color: '#7FB83D'}}>AMS</span><span style={{color: '#6A3D9A'}}>VE</span> - Paving your way to Global Academic Opportunities
             </h2>
             <p className="text-lg mb-8" style={{color: '#666'}}>
-              At DRAMSVE, we are committed to delivering quality education and expert guidance to help students achieve their academic and career aspirations abroad.
+              At DRAMSVE, we are committed to guide students to achieve their academic goals and empowering then to succeed internationally.
             </p>
             <motion.a 
               href="/courses"
@@ -89,7 +89,7 @@ const AboutUsSection = () => {
               whileTap={{ scale: 0.95 }}
               
             >
-              Dive Into Our Programs
+              Start Exploring
             </motion.a>
           </motion.div>
           <motion.div 
@@ -168,32 +168,35 @@ const AboutUsSection = () => {
               {
                 icon: "visibility",
                 title: "Our Vision",
-                description: "To be a leading global education consultancy, opening doors for students to achieve their international dreams through personalized, technology driven solutions.",
+                description: "Inspiring young minds to dream beyond borders, gain new perspectives and be the anchor in their academic voyage.",
                 color: "purple"
               },
               {
                 icon: "task_alt",
                 title: "Our Mission",
-                description: "To be a bridge between students and global learning experience. Providing them empowering, structured and personalized educational services.",
+                description: "To minimize confusion and maximize confidence thereby simplifying the dream into reality. Your trusted companion through every stage.",
                 color: "orange"
               },
               {
                 icon: "favorite",
                 title: "Our Values",
-                description: "We believe in providing holistic, comprehensive and cutting-edge services for our students. Student's needs are of the utmost priority for us.",
+                description: "We believe in transparency, inclusivity and excellence. We are committed to support our students with honesty, cultural sensitivity and dedication.",
                 color: "green"
               }
             ].map((principle, index) => (
               <motion.div
                 key={index}
-                className="group p-8 rounded-xl border border-gray-100 bg-white shadow-lg hover:shadow-2xl transition-all duration-300"
+                className="group p-8 rounded-xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 text-center"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(106, 61, 154, 0.05) 0%, rgba(255, 255, 255, 0.95) 100%)'
+                }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8 }}
               >
-                <div className="flex items-center justify-center w-16 h-16 rounded-lg mb-6 transition-colors duration-300" style={{
+                <div className="flex items-center justify-center w-16 h-16 rounded-lg mb-6 mx-auto transition-colors duration-300" style={{
                   backgroundColor: principle.color === 'purple' ? '#F3F0FF' : principle.color === 'orange' ? '#FFF7ED' : '#F0FDF4',
                   color: principle.color === 'purple' ? '#6A3D9A' : principle.color === 'orange' ? '#FBB03B' : '#6C9E24'
                 }}>
@@ -219,14 +222,14 @@ const AboutUsSection = () => {
               Why We Stand Out?
             </h2>
             <p className="mt-4 text-lg max-w-3xl mx-auto" style={{color: '#666'}}>
-              Discover the key advantages that make DRAMSVE the preferred choice for students targeting their academic success abroad.
+              Uncover the advantages that make DRAMSVE the trusted partner for students achieving their dreams abroad
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-8 rounded-xl border border-transparent hover:shadow-xl transition-all duration-300"
+                className="bg-white p-8 rounded-xl border border-transparent hover:shadow-xl transition-all duration-300 text-center"
                 style={{'--hover-border': '#8B5FBF'}}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -234,7 +237,7 @@ const AboutUsSection = () => {
                 viewport={{ once: true }}
                 whileHover={{ y: -8, borderColor: '#8B5FBF' }}
               >
-                <div className="flex items-center justify-center w-16 h-16 rounded-lg mb-6" style={{backgroundColor: '#F3F0FF'}}>
+                <div className="flex items-center justify-center w-16 h-16 rounded-lg mb-6 mx-auto" style={{backgroundColor: '#F3F0FF'}}>
                   <span className="material-symbols-outlined text-3xl" style={{color: '#6A3D9A'}}>{feature.icon}</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3" style={{color: '#333'}}>{feature.title}</h3>
@@ -244,6 +247,149 @@ const AboutUsSection = () => {
           </div>
         </div>
 
+        {/* Key Achievements and Milestones */}
+        <div className="mb-24">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4" style={{color: '#333'}}>
+              Key Achievements and Milestones
+            </h2>
+            <p className="text-xl" style={{color: '#6A3D9A', fontWeight: '600'}}>
+              A Legacy of Excellence and Lasting Impact
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                image: require('../images/achievements/marathi_actress.jpg'),
+                title: "Leading Educational Consultancy 2021",
+                description: "Honoured with the Leading Educational Consultancy 2021 Award presented by Actress Sonalee Kulkarni",
+                details: "Awarded the Leading Educational Consultancy in Maharashtra By Renowned Marathi Actress Sonalee Kulkarni. On 21st October 2021, Nashik."
+              },
+              {
+                image: require('../images/achievements/jaky.JPG'),
+                title: "Most Trusted Educational Consultancy 2019",
+                description: "Winner of Most Trusted Educational Consultancy - 2019 Award presented by Actor Jackie Shroff On 24th Aug 2019, Delhi",
+                details: "Team FOES was a proud recipient of the most trusted educational consultancy honoured by Evergreen Actor Jackie Shroff On 2018, Delhi"
+              },
+              {
+                image: require('../images/achievements/Govinda.jpg'),
+                title: "Leading Educational Consultancy 2019",
+                description: "Honoured with Leading Educational Consultancy-2019 Award presented by Actor Govinda",
+                details: "Guiding thousands to success, recognized for leadership excellence. FDES was Awarded as the Leading Educational Consultancy On January 18, 2019 in Goa."
+              },
+              {
+                image: require('../images/achievements/sunil_shetty.JPG'),
+                title: "Leading Education Consultancy 2021",
+                description: "Award from Sunil Shetty for Leading Education Consultancy for 2021",
+                details: "2nd Reward For Leading Our Students Team FDES Got This Award From Bollywood Actor Suniel Shetty On January 2021, Delhi."
+              }
+            ].map((achievement, index) => (
+              <motion.div
+                key={index}
+                className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  y: -10,
+                  rotateY: 5,
+                  scale: 1.02
+                }}
+              >
+                {/* Floating Animation */}
+                <motion.div
+                  animate={{
+                    y: [0, -10, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.5
+                  }}
+                >
+                  {/* Image Container */}
+                  <div className="relative overflow-hidden">
+                    <motion.img
+                      src={achievement.image}
+                      alt={achievement.title}
+                      className="w-full h-64 sm:h-72 md:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+                      whileHover={{ scale: 1.1 }}
+                    />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    {/* Sparkle Effect */}
+                    <motion.div
+                      className="absolute top-4 right-4 w-6 h-6 bg-yellow-400 rounded-full"
+                      animate={{
+                        scale: [0, 1, 0],
+                        rotate: [0, 180, 360],
+                        opacity: [0, 1, 0]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: index * 0.3
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="p-6">
+                    <motion.h3 
+                      className="text-lg font-bold mb-3 leading-tight"
+                      style={{color: '#333'}}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      {achievement.title}
+                    </motion.h3>
+                    <motion.p 
+                      className="text-sm mb-4 leading-relaxed"
+                      style={{color: '#666'}}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      {achievement.description}
+                    </motion.p>
+                    <motion.p 
+                      className="text-xs leading-relaxed"
+                      style={{color: '#888'}}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      {achievement.details}
+                    </motion.p>
+                  </div>
+                </motion.div>
+                
+                {/* Purple Accent Border */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-transparent rounded-2xl"
+                  whileHover={{ borderColor: '#6A3D9A' }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
       </div>
     </section>

@@ -69,24 +69,24 @@ const BlogsSection = () => {
 
   return (
     <section 
-      className="py-20 sm:py-24"
-      style={{background: 'linear-gradient(135deg, #F7F7F7 0%, #FFF9F3 100%)'}}
-    >
+  className="pt-32 sm:pt-40 pb-20 sm:pb-24"
+  style={{background: 'linear-gradient(135deg, #F7F7F7 0%, #FFF9F3 100%)'}}
+>
       <div className="container mx-auto px-4" ref={ref}>
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16" // Reduced margin for mobile
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           <h2 
-            className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-4"
+            className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-3 sm:mb-4"
             style={{color: '#6A3D9A', letterSpacing: '0.5px'}}
           >
             Latest Insights
           </h2>
           <p 
-            className="max-w-2xl mx-auto text-lg font-display"
+            className="max-w-2xl mx-auto text-base sm:text-lg font-display px-4"
             style={{color: '#6C9E24', fontWeight: 300, letterSpacing: '0.3px', lineHeight: '1.6'}}
           >
             Stay updated with expert tips, study guides, and success stories
@@ -94,9 +94,9 @@ const BlogsSection = () => {
         </motion.div>
 
         {/* Continuous Rolling Blog Slideshow */}
-        <div className="overflow-hidden relative mb-12 blog-slideshow">
+        <div className="overflow-hidden relative mb-8 sm:mb-12"> {/* Reduced margin */}
           <motion.div 
-            className="flex items-center gap-4 md:gap-6"
+            className="flex items-center gap-3 sm:gap-4 md:gap-6" // Reduced gap for mobile
             animate={isPaused ? {} : {
               x: [0, -2400]
             }}
@@ -112,24 +112,24 @@ const BlogsSection = () => {
             {duplicatedBlogs.map((blog, index) => (
               <motion.div 
                 key={index}
-                className="flex-shrink-0 relative bg-white rounded-2xl overflow-hidden group cursor-pointer"
+                className="flex-shrink-0 relative bg-white rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer"
                 style={{
-                  width: '320px',
-                  minWidth: '320px',
-                  height: '480px',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+                  width: '280px', // Reduced width for mobile
+                  minWidth: '280px',
+                  height: '420px', // Reduced height for mobile
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.1)',
                 }}
                 whileHover={{ 
-                  y: -10,
+                  y: -8,
                   scale: 1.02,
-                  boxShadow: "0 20px 40px rgba(106, 61, 154, 0.15)",
+                  boxShadow: "0 15px 30px rgba(106, 61, 154, 0.15)",
                 }}
                 onHoverStart={() => setIsPaused(true)}
                 onHoverEnd={() => setIsPaused(false)}
                 transition={{ type: "spring", stiffness: 200 }}
               >
                 {/* Blog Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 overflow-hidden"> {/* Reduced height */}
                   <motion.img
                     src={blog.image}
                     alt={blog.title}
@@ -137,9 +137,9 @@ const BlogsSection = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   />
-                  <div className="absolute top-4 left-4">
+                  <div className="absolute top-3 left-3">
                     <span 
-                      className="px-3 py-1 rounded-full text-xs font-semibold text-white"
+                      className="px-2 py-1 rounded-full text-xs font-semibold text-white"
                       style={{backgroundColor: '#8B5FBF'}}
                     >
                       {blog.category}
@@ -148,24 +148,24 @@ const BlogsSection = () => {
                 </div>
 
                 {/* Blog Content */}
-                <div className="p-4 md:p-6 flex flex-col justify-between h-72">
+                <div className="p-4 flex flex-col justify-between h-80"> {/* Adjusted height */}
                   <div>
                     <h3 
-                      className="text-base md:text-lg font-bold mb-3 line-clamp-2"
-                      style={{color: '#333333', minHeight: '3.5rem'}}
+                      className="text-sm sm:text-base font-bold mb-2 line-clamp-2"
+                      style={{color: '#333333', minHeight: '2.8rem'}}
                     >
                       {blog.title}
                     </h3>
                     
                     <p 
-                      className="text-xs md:text-sm leading-relaxed mb-4 line-clamp-3"
-                      style={{color: '#666666', minHeight: '4rem'}}
+                      className="text-xs leading-relaxed mb-3 line-clamp-3"
+                      style={{color: '#666666', minHeight: '3.5rem'}}
                     >
                       {blog.excerpt}
                     </p>
 
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-1 mb-3">
                       {blog.tags.slice(0, 2).map((tag, tagIndex) => (
                         <span 
                           key={tagIndex}
@@ -179,21 +179,21 @@ const BlogsSection = () => {
                   </div>
 
                   {/* Author & Meta Info */}
-                  <div className="border-t pt-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-3">
+                  <div className="border-t pt-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
                         <div 
-                          className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                          className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
                           style={{backgroundColor: '#6A3D9A'}}
                         >
                           {blog.author.split(' ').map(n => n[0]).join('')}
                         </div>
                         <div>
-                          <p className="text-sm font-medium" style={{color: '#333333'}}>
-                            {blog.author}
+                          <p className="text-xs font-medium" style={{color: '#333333'}}>
+                            {blog.author.split(' ')[0]}
                           </p>
                           <p className="text-xs" style={{color: '#666666'}}>
-                            {blog.date}
+                            {blog.date.split(' ')[1]} {blog.date.split(' ')[2]}
                           </p>
                         </div>
                       </div>
@@ -201,8 +201,6 @@ const BlogsSection = () => {
                         {blog.readTime}
                       </span>
                     </div>
-
-
                   </div>
                 </div>
 
@@ -217,15 +215,15 @@ const BlogsSection = () => {
             ))}
           </motion.div>
           
-          {/* Gradient overlays to hide edges */}
+          {/* Gradient overlays to hide edges - Mobile responsive */}
           <div 
-            className="absolute left-0 top-0 h-full w-8 md:w-16 pointer-events-none z-10"
+            className="absolute left-0 top-0 h-full w-6 sm:w-8 md:w-16 pointer-events-none z-10"
             style={{
               background: 'linear-gradient(to right, rgba(247,247,247,1), rgba(247,247,247,0))'
             }}
           />
           <div 
-            className="absolute right-0 top-0 h-full w-8 md:w-16 pointer-events-none z-10"
+            className="absolute right-0 top-0 h-full w-6 sm:w-8 md:w-16 pointer-events-none z-10"
             style={{
               background: 'linear-gradient(to left, rgba(247,247,247,1), rgba(247,247,247,0))'
             }}

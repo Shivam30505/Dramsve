@@ -11,177 +11,117 @@ const CoursesSection = () => {
   const courses = [
     {
       title: 'IELTS Preparation',
-      description: 'Comprehensive IELTS training with expert guidance to achieve your target band score for international admissions.',
+      description: 'Comprehensive IELTS training with expert guidance for international admissions.',
       duration: '8 weeks',
       level: 'All Levels',
-      students: '100+',
-      rating: 4.9,
       route: '/course/ielts-academic-champion',
       features: ['Speaking Practice', 'Writing Tasks', 'Mock Tests', 'Personal Feedback']
     },
     {
       title: 'Spoken English',
-      description: 'Professional communication training to enhance your speaking, presentation, and interpersonal skills.',
+      description: 'Professional communication training for speaking and presentation skills.',
       duration: '10 weeks',
-      level: 'Beginner to Advanced',
-      students: '100+',
-      rating: 4.8,
+      level: 'All Levels',
       route: '/course/english-champion',
       features: ['Public Speaking', 'Business English', 'Presentation Skills', 'Confidence Building']
     },
     {
       title: 'German Basics',
-      description: 'Language training to build your German speaking, writing, and cultural understanding skills.',
+      description: 'Language training for German speaking, writing, and cultural understanding.',
       duration: '12 weeks',
       level: 'All Levels',
-      students: '100+',
-      rating: 4.9,
       route: '/course/german-language',
-      features: ['Grammar & Vocabulary', 'Speaking & Listening Practice', 'Cultural Orientation', 'Study Abroad Support']
+      features: ['Grammar & Vocabulary', 'Speaking Practice', 'Cultural Orientation', 'Study Support']
     },
     {
       title: 'PTE',
-      description: 'Master the PTE Academic with strategic training, practical exercises, and expert tips to achieve a high score for your study abroad goals.',
+      description: 'Master PTE Academic with strategic training for study abroad goals.',
       duration: '8 weeks',
       level: 'All Levels',
-      students: '100+',
-      rating: 4.8,
       route: '/course/pte-academic',
-      features: ['Speaking & Writing Modules', 'Reading & Listening Strategies', 'Time Management Techniques', 'Realistic Mock Tests']
+      features: ['Speaking & Writing', 'Reading & Listening', 'Time Management', 'Mock Tests']
     },
     {
       title: 'TOEFL',
-      description: 'Comprehensive TOEFL iBT preparation focusing on all four sections to help you excel and meet university English language requirements.',
+      description: 'Comprehensive TOEFL preparation for university language requirements.',
       duration: '9 weeks',
-      level: 'Intermediate to Advanced',
-      students: '100+',
-      rating: 4.7,
+      level: 'All levels',
       route: '/course/toefl',
-      features: ['Integrated Reading & Listening', 'Structured Speaking Responses', 'Academic Writing Tasks', 'Full-Length Practice Tests']
+      features: ['Reading & Listening', 'Speaking Responses', 'Writing Tasks', 'Practice Tests']
     },
     {
       title: 'French',
-      description: 'Engaging French language classes to build a strong foundation in communication, grammar, and cultural appreciation.',
+      description: 'French language classes for communication and cultural appreciation.',
       duration: '14 weeks',
-      level: 'Beginner to Intermediate',
-      students: '100+',
-      rating: 4.9,
+      level: 'All levels',
       route: '/course/french-language',
-      features: ['Essential Vocabulary & Grammar', 'Conversational French Skills', 'Reading Comprehension & Writing', 'Cultural Insights & Etiquette']
+      features: ['Vocabulary & Grammar', 'Conversational Skills', 'Reading & Writing', 'Cultural Insights']
     },
     {
       title: 'Digital SAT',
-      description: 'Ace the new Digital SAT with adaptive practice tests, concept reviews, and test-taking strategies tailored for the computer-based format.',
+      description: 'Ace the Digital SAT with adaptive practice and test strategies.',
       duration: '10 weeks',
       level: 'High School',
-      students: '100+',
-      rating: 4.8,
       route: '/course/digital-sat',
-      features: ['Math & Evidence-Based Reading', 'Adaptive Test Strategy', 'Time-Saving Problem Solving', 'Official Digital Practice Tests']
+      features: ['Math & Reading', 'Test Strategy', 'Problem Solving', 'Practice Tests']
     },
     {
       title: 'GMAT',
-      description: 'Advanced GMAT training to conquer the quantitative, verbal, and integrated reasoning sections for top business school admissions.',
+      description: 'GMAT training for business school admissions preparation.',
       duration: '12 weeks',
-      level: 'Intermediate to Advanced',
-      students: '100+',
-      rating: 4.7,
+      level: 'All levels',
       route: '/course/gmat',
-      features: ['Quantitative & Verbal Reasoning', 'Data Insights & Integrated Reasoning', 'Analytical Writing Assessment', 'Advanced Problem-Solving Techniques']
+      features: ['Quantitative Reasoning', 'Verbal Reasoning', 'Data Insights', 'Problem Solving']
     },
     {
       title: 'GRE',
-      description: 'In-depth GRE preparation to master verbal reasoning, quantitative analysis, and analytical writing for graduate program success.',
+      description: 'GRE preparation for graduate program success and admissions.',
       duration: '11 weeks',
       level: 'All Levels',
-      students: '100+',
-      rating: 4.8,
       route: '/course/shorter-gre',
-      features: ['Advanced Vocabulary & Math', 'Analytical Writing Skills', 'Test-Taking Strategies & Pacing', 'Comprehensive Practice Exams']
+      features: ['Vocabulary & Math', 'Writing Skills', 'Test Strategies', 'Practice Exams']
     },
     {
       title: 'CELPIP',
-      description: 'Targeted CELPIP training to achieve the scores you need for Canadian permanent residency and citizenship applications.',
+      description: 'CELPIP training for Canadian residency and citizenship applications.',
       duration: '7 weeks',
       level: 'All Levels',
-      students: '100+',
-      rating: 4.9,
       route: '/course/celpip',
-      features: ['Listening & Speaking Tasks', 'Reading & Writing Components', 'Canadian Context & Accents', 'Practical Test Simulations']
+      features: ['Listening & Speaking', 'Reading & Writing', 'Canadian Context', 'Test Simulations']
     },
     {
-      title: 'Duolingo English Test',
-      description: 'Efficient and focused preparation for the Duolingo English Test to achieve your target score for university applications quickly and confidently.',
+      title: 'Duolingo English',
+      description: 'Duolingo English Test preparation for university applications.',
       duration: '6 weeks',
       level: 'All Levels',
-      students: '100+',
-      rating: 4.8,
       route: '/course/duolingo-english',
-      features: ['Adaptive Test Question Strategies', 'Speaking, Reading, & Listening Practice', 'Interactive Writing & Sample Responses', 'Full-Length Mock Tests with Feedback']
+      features: ['Test Strategies', 'Speaking Practice', 'Writing Practice', 'Mock Tests']
     }
   ];
 
   // Duplicate courses for seamless loop
   const duplicatedCourses = [...courses, ...courses];
 
-
-
-  const renderStars = (rating) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-    
-    return (
-      <div className="flex items-center gap-1">
-        {Array.from({ length: fullStars }, (_, index) => (
-          <motion.span
-            key={index}
-            className="material-symbols-outlined text-sm"
-            style={{color: '#FBB03B'}}
-            initial={{ scale: 0, rotate: -180 }}
-            animate={inView ? { scale: 1, rotate: 0 } : {}}
-            transition={{ delay: index * 0.1, type: "spring" }}
-          >
-            star
-          </motion.span>
-        ))}
-        {hasHalfStar && (
-          <motion.span
-            className="material-symbols-outlined text-sm"
-            style={{color: '#FBB03B'}}
-            initial={{ scale: 0 }}
-            animate={inView ? { scale: 1 } : {}}
-            transition={{ delay: fullStars * 0.1, type: "spring" }}
-          >
-            star_half
-          </motion.span>
-        )}
-        <span className="text-sm ml-1" style={{color: '#666666'}}>
-          ({rating})
-        </span>
-      </div>
-    );
-  };
-
   return (
     <section 
-      className="py-20 sm:py-24"
+      className="py-12 sm:py-20"
       style={{background: 'linear-gradient(135deg, #FFFFFF 0%, #F7F7F7 100%)'}}
     >
       <div className="container mx-auto px-4" ref={ref}>
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           <h2 
-            className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide mb-4"
+            className="font-display text-xl sm:text-2xl md:text-3xl font-bold tracking-wide mb-3 sm:mb-4"
             style={{color: '#6A3D9A', letterSpacing: '0.5px'}}
           >
             Our Courses
           </h2>
           <p 
-            className="max-w-2xl mx-auto text-lg font-display"
+            className="max-w-2xl mx-auto text-base sm:text-lg font-display px-4"
             style={{color: '#6C9E24', fontWeight: 300, letterSpacing: '0.3px', lineHeight: '1.6'}}
           >
             Transform your future with our expertly designed courses
@@ -189,37 +129,36 @@ const CoursesSection = () => {
         </motion.div>
 
         {/* Continuous Rolling Slideshow */}
-        <div className="overflow-hidden relative mb-12 course-slideshow">
+        <div className="overflow-hidden relative mb-8 sm:mb-12">
           <motion.div 
-            className="flex items-center gap-6 md:gap-8"
+            className="flex items-center gap-4 sm:gap-6 md:gap-8"
             animate={isPaused ? {} : {
-              x: [0, -4400]
+              x: [0, -3600]
             }}
             transition={{
-              duration: 45,
+              duration: 40,
               repeat: Infinity,
               ease: "linear"
             }}
             style={{
-              width: '8800px'
+              width: '7200px'
             }}
           >
             {duplicatedCourses.map((course, index) => (
               <motion.div 
                 key={index}
-                className="flex-shrink-0 relative bg-white rounded-xl overflow-hidden group cursor-pointer course-card-mobile"
+                className="flex-shrink-0 relative bg-white rounded-xl overflow-hidden group cursor-pointer"
                 style={{
-                  width: '380px',
-                  minWidth: '380px',
-                  height: '520px',
-                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.1)',
-                  borderRadius: '24px'
+                  width: '300px',
+                  minWidth: '300px',
+                  height: '420px',
+                  boxShadow: '0 6px 16px rgba(0, 0, 0, 0.1)',
+                  borderRadius: '20px'
                 }}
                 whileHover={{ 
-                  y: -15,
-                  scale: 1.03,
-                  boxShadow: "0 20px 40px rgba(106, 61, 154, 0.2)",
-                  rotateY: 5
+                  y: -10,
+                  scale: 1.02,
+                  boxShadow: "0 15px 30px rgba(106, 61, 154, 0.15)",
                 }}
                 onHoverStart={() => setIsPaused(true)}
                 onHoverEnd={() => setIsPaused(false)}
@@ -238,29 +177,27 @@ const CoursesSection = () => {
                   }}
                 />
 
-                <div className="p-6 relative z-10 flex flex-col h-full">
+                <div className="p-4 sm:p-5 relative z-10 flex flex-col h-full">
                   {/* Course header */}
-                  <div className="mb-6">
+                  <div className="mb-4">
                     <h3 
-                      className="text-xl font-bold mb-3 line-clamp-2"
-                      style={{color: '#333333', minHeight: '3.5rem'}}
+                      className="text-lg sm:text-xl font-bold mb-2 line-clamp-2"
+                      style={{color: '#333333', minHeight: '2.8rem'}}
                     >
                       {course.title}
                     </h3>
                     
                     <p 
-                      className="text-sm leading-relaxed mb-4 line-clamp-3"
-                      style={{color: '#666666', minHeight: '4.5rem'}}
+                      className="text-xs sm:text-sm leading-relaxed mb-3 line-clamp-2"
+                      style={{color: '#666666', minHeight: '2.5rem'}}
                     >
                       {course.description}
                     </p>
-                    
-                    {renderStars(course.rating)}
                   </div>
 
-                  {/* Course stats */}
+                  {/* Course stats - Only Duration and Level */}
                   <div 
-                    className="grid grid-cols-3 gap-4 mb-6 p-4 rounded-lg"
+                    className="grid grid-cols-2 gap-3 mb-4 p-3 rounded-lg"
                     style={{backgroundColor: 'rgba(106, 61, 154, 0.05)'}}
                   >
                     <div className="text-center">
@@ -271,28 +208,24 @@ const CoursesSection = () => {
                       <p className="text-xs font-semibold" style={{color: '#6A3D9A'}}>LEVEL</p>
                       <p className="text-sm font-bold" style={{color: '#333333'}}>{course.level}</p>
                     </div>
-                    <div className="text-center">
-                      <p className="text-xs font-semibold" style={{color: '#6A3D9A'}}>STUDENTS</p>
-                      <p className="text-sm font-bold" style={{color: '#333333'}}>{course.students}</p>
-                    </div>
                   </div>
 
                   {/* Features */}
-                  <div className="mb-6 flex-1">
-                    <p className="text-sm font-semibold mb-3" style={{color: '#6A3D9A'}}>What You'll Learn:</p>
-                    <div className="grid grid-cols-2 gap-2">
+                  <div className="mb-4 flex-1">
+                    <p className="text-xs sm:text-sm font-semibold mb-2" style={{color: '#6A3D9A'}}>What You'll Learn:</p>
+                    <div className="grid grid-cols-2 gap-1 sm:gap-2">
                       {course.features.map((feature, featureIndex) => (
                         <div 
                           key={featureIndex}
-                          className="flex items-center gap-2"
+                          className="flex items-start gap-1 sm:gap-2"
                         >
                           <span 
-                            className="material-symbols-outlined text-sm"
+                            className="material-symbols-outlined text-xs sm:text-sm flex-shrink-0 mt-0.5"
                             style={{color: '#FBB03B'}}
                           >
                             check_circle
                           </span>
-                          <span className="text-xs" style={{color: '#666666'}}>{feature}</span>
+                          <span className="text-xs leading-tight" style={{color: '#666666'}}>{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -300,7 +233,7 @@ const CoursesSection = () => {
 
                   {/* Enroll button */}
                   <motion.button
-                    className="w-full py-3 px-6 rounded-lg font-semibold text-white transition-all duration-300 mt-auto"
+                    className="w-full py-2 sm:py-3 px-4 rounded-lg font-semibold text-white transition-all duration-300 mt-auto text-sm sm:text-base"
                     style={{backgroundColor: '#8B5FBF'}}
                     whileHover={{ 
                       backgroundColor: '#7FB83D',
@@ -339,29 +272,29 @@ const CoursesSection = () => {
           
           {/* Gradient overlays to hide edges */}
           <div 
-            className="absolute left-0 top-0 h-full w-16 pointer-events-none z-10"
+            className="absolute left-0 top-0 h-full w-8 sm:w-16 pointer-events-none z-10"
             style={{
               background: 'linear-gradient(to right, rgba(247,247,247,1), rgba(247,247,247,0))'
             }}
           />
           <div 
-            className="absolute right-0 top-0 h-full w-16 pointer-events-none z-10"
+            className="absolute right-0 top-0 h-full w-8 sm:w-16 pointer-events-none z-10"
             style={{
               background: 'linear-gradient(to left, rgba(247,247,247,1), rgba(247,247,247,0))'
             }}
           />
         </div>
 
-        {/* Explore More Button */}
+        {/* Explore More Button - Always Visible */}
         <motion.div 
-          className="text-center"
+          className="text-center mt-8"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          transition={{ delay: 1, duration: 0.6 }}
         >
           <motion.button
-            className="px-8 py-4 rounded-xl font-bold text-lg text-white transition-all duration-300 shadow-lg"
-            style={{backgroundColor: '#6A3D9A'}}
+            className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg text-white transition-all duration-300 shadow-lg mx-auto"
+            style={{backgroundColor: '#6A3D9A', display: 'block'}}
             whileHover={{ 
               backgroundColor: '#6C9E24',
               scale: 1.05,
@@ -373,10 +306,10 @@ const CoursesSection = () => {
               window.scrollTo(0, 0);
             }}
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 justify-center">
               Explore More Courses
               <motion.span 
-                className="material-symbols-outlined"
+                className="material-symbols-outlined text-lg"
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
@@ -386,6 +319,46 @@ const CoursesSection = () => {
           </motion.button>
         </motion.div>
       </div>
+
+     <style jsx>{`
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Ensure proper line clamping */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Mobile-specific card adjustments */
+  @media (max-width: 768px) {
+    .course-card-mobile {
+      height: 380px !important;
+      min-height: 380px !important;
+    }
+  }
+
+  /* Prevent content overflow */
+  .course-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+`}</style>
     </section>
   );
 };
