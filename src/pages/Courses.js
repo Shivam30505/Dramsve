@@ -275,7 +275,7 @@ const Courses = () => {
           <div className="container mx-auto px-2 sm:px-4 lg:px-8 w-full" ref={ref}>
             <div className="text-center mb-6 sm:mb-8 md:mb-12 px-2">
               <h1 
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide mb-3 sm:mb-4"
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide mb-3 sm:mb-4 mt-8 sm:mt-12 md:mt-16"
                 style={{color: '#6A3D9A', letterSpacing: '0.5px'}}
               >
                 Our Popular Courses
@@ -402,117 +402,152 @@ const Courses = () => {
 
       {/* IELTS Selection Modal */}
       <AnimatePresence>
-        {isIELTSModalOpen && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
-            variants={overlayVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <motion.div
-              className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
-              variants={modalVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              style={{
-                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)'
-              }}
+  {isIELTSModalOpen && (
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
+      variants={overlayVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <motion.div
+        className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col"
+        variants={modalVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        style={{
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)'
+        }}
+      >
+        {/* Modal Header */}
+        <div className="p-6 border-b border-gray-200">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold" style={{color: '#6A3D9A'}}>
+              Choose Your IELTS Program
+            </h2>
+            <button
+              onClick={handleCloseModal}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
             >
-              {/* Modal Header */}
-              <div className="p-6 border-b border-gray-200">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold" style={{color: '#6A3D9A'}}>
-                    Choose Your IELTS Program
-                  </h2>
-                  <button
-                    onClick={handleCloseModal}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                  >
-                    <span className="material-symbols-outlined text-gray-600">close</span>
-                  </button>
-                </div>
-                <p className="text-gray-600 mt-2">
-                  Select the IELTS preparation program that best fits your goals and timeline
+              <span className="material-symbols-outlined text-gray-600">close</span>
+            </button>
+          </div>
+          <p className="text-gray-600 mt-2">
+            Select the IELTS preparation program that best fits your goals and timeline
+          </p>
+        </div>
+
+        {/* Modal Body with integrated footer for mobile */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {ieltsPrograms.map((program, index) => (
+                <motion.div
+                  key={program.id}
+                  className={`p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 ${
+                    selectedIELTSProgram?.id === program.id 
+                      ? 'border-purple-500 bg-purple-50' 
+                      : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
+                  }`}
+                  onClick={() => handleProgramSelect(program)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <h3 className="font-bold text-lg mb-2" style={{color: '#333333'}}>
+                    {program.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3 leading-relaxed">
+                    {program.description}
+                  </p>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="flex items-center gap-1 text-gray-600">
+                      <span className="material-symbols-outlined text-base">schedule</span>
+                      {program.duration}
+                    </span>
+                    <span className="px-2 py-1 rounded-full text-xs font-medium" 
+                      style={{
+                        backgroundColor: program.intensity === 'Fast Track' ? '#FEF3CD' : '#DCFCE7',
+                        color: program.intensity === 'Fast Track' ? '#92400E' : '#166534'
+                      }}>
+                      {program.intensity}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Footer inside modal body for mobile */}
+          <div className="block md:hidden p-6 border-t border-gray-200 bg-gray-50">
+            <div className="flex flex-col gap-4">
+              <div>
+                {selectedIELTSProgram && (
+                  <p className="text-sm text-gray-600 text-center">
+                    Selected: <span className="font-semibold text-purple-600">{selectedIELTSProgram.title}</span>
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={handleCloseModal}
+                  className="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleContinue}
+                  disabled={!selectedIELTSProgram}
+                  className={`px-6 py-3 rounded-lg font-bold text-white transition-all duration-300 ${
+                    selectedIELTSProgram 
+                      ? 'hover:bg-green-600' 
+                      : 'opacity-50 cursor-not-allowed'
+                  }`}
+                  style={{backgroundColor: '#6A3D9A'}}
+                >
+                  Select & Continue
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Modal Footer for desktop */}
+        <div className="hidden md:block p-6 border-t border-gray-200 bg-gray-50">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+              {selectedIELTSProgram && (
+                <p className="text-sm text-gray-600">
+                  Selected: <span className="font-semibold text-purple-600">{selectedIELTSProgram.title}</span>
                 </p>
-              </div>
-
-              {/* Modal Body */}
-              <div className="p-6 overflow-y-auto max-h-[60vh]">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {ieltsPrograms.map((program, index) => (
-                    <motion.div
-                      key={program.id}
-                      className={`p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 ${
-                        selectedIELTSProgram?.id === program.id 
-                          ? 'border-purple-500 bg-purple-50' 
-                          : 'border-gray-200 hover:border-purple-300 hover:bg-gray-50'
-                      }`}
-                      onClick={() => handleProgramSelect(program)}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <h3 className="font-bold text-lg mb-2" style={{color: '#333333'}}>
-                        {program.title}
-                      </h3>
-                      <p className="text-sm text-gray-600 mb-3 leading-relaxed">
-                        {program.description}
-                      </p>
-                      <div className="flex justify-between items-center text-sm">
-                        <span className="flex items-center gap-1 text-gray-600">
-                          <span className="material-symbols-outlined text-base">schedule</span>
-                          {program.duration}
-                        </span>
-                        <span className="px-2 py-1 rounded-full text-xs font-medium" 
-                          style={{
-                            backgroundColor: program.intensity === 'Fast Track' ? '#FEF3CD' : '#DCFCE7',
-                            color: program.intensity === 'Fast Track' ? '#92400E' : '#166534'
-                          }}>
-                          {program.intensity}
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Modal Footer */}
-              <div className="p-6 border-t border-gray-200 bg-gray-50">
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                  <div>
-                    {selectedIELTSProgram && (
-                      <p className="text-sm text-gray-600">
-                        Selected: <span className="font-semibold text-purple-600">{selectedIELTSProgram.title}</span>
-                      </p>
-                    )}
-                  </div>
-                  <div className="flex gap-3">
-                    <button
-                      onClick={handleCloseModal}
-                      className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition-colors"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={handleContinue}
-                      disabled={!selectedIELTSProgram}
-                      className={`px-6 py-2 rounded-lg font-bold text-white transition-all duration-300 ${
-                        selectedIELTSProgram 
-                          ? 'hover:bg-green-600' 
-                          : 'opacity-50 cursor-not-allowed'
-                      }`}
-                      style={{backgroundColor: '#6A3D9A'}}
-                    >
-                      Select & Continue
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              )}
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={handleCloseModal}
+                className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-100 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleContinue}
+                disabled={!selectedIELTSProgram}
+                className={`px-6 py-2 rounded-lg font-bold text-white transition-all duration-300 ${
+                  selectedIELTSProgram 
+                    ? 'hover:bg-green-600' 
+                    : 'opacity-50 cursor-not-allowed'
+                }`}
+                style={{backgroundColor: '#6A3D9A'}}
+              >
+                Select & Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
       
       <Footer />
       <MobileDesktopPrompt />

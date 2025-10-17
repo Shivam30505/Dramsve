@@ -81,7 +81,7 @@ const AboutUsSection = () => {
             <p className="text-lg mb-8" style={{color: '#666'}}>
               At DRAMSVE, we are committed to guide students to achieve their academic goals and empowering then to succeed internationally.
             </p>
-            <motion.a 
+            {/* <motion.a 
               href="/courses"
               className="inline-block rounded-lg px-8 py-4 text-white text-base font-bold tracking-wide transition-all duration-300 shadow-lg"
               style={{backgroundColor: '#8B5FBF'}}
@@ -90,7 +90,7 @@ const AboutUsSection = () => {
               
             >
               Start Exploring
-            </motion.a>
+            </motion.a> */}
           </motion.div>
           <motion.div 
             className="relative"
