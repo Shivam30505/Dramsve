@@ -74,7 +74,7 @@ const AboutUsSection = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <span className="text-sm font-bold uppercase tracking-widest" style={{color: '#6A3D9A'}}>About Us</span>
+            {/* <span className="text-sm font-bold uppercase tracking-widest" style={{color: '#6A3D9A'}}>About Us</span> */}
             <h2 className="text-4xl md:text-5xl font-extrabold mt-4 mb-6 leading-tight" style={{color: '#333'}}>
               <span style={{color: '#6A3D9A'}}>DR</span><span style={{color: '#7FB83D'}}>AMS</span><span style={{color: '#6A3D9A'}}>VE</span> - Paving your way to Global Academic Opportunities
             </h2>
@@ -101,7 +101,7 @@ const AboutUsSection = () => {
           >
             <motion.img 
               alt="About DRAMSVE - Your Gateway to Global Education" 
-              className="object-cover w-full h-96 cursor-pointer" 
+              className="object-cover w-full h-96 cursor-pointer rounded-2xl" 
               src={require('../images/about.png')}
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
