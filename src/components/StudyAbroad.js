@@ -111,18 +111,11 @@ const StudyAbroad = ({ isOpen, onClose }) => {
       logo: ukLogos[i + 1]
     })),
     
-    Canada: [
-      ...universitiesData.Canada.map((name, i) => ({
-        id: `canada-${i + 1}`,
-        name: name,
-        logo: canadaLogos[i + 1]
-      })),
-      ...Array.from({ length: 74 }, (_, i) => ({
-        id: `canada-${i + 21}`,
-        name: `Canadian University ${i + 21}`,
-        logo: canadaLogos[i + 21]
-      }))
-    ],
+    Canada: universitiesData.Canada.map((name, i) => ({
+      id: `canada-${i + 1}`,
+      name: name,
+      logo: canadaLogos[i + 1]
+    })),
     
     // Germany: universitiesData.Germany.map((name, i) => ({
     //   id: `germany-${i + 1}`,

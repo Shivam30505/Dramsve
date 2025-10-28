@@ -59,7 +59,7 @@ const Home = () => {
           {/* Hero Section */}
           <section className="py-16 md:py-24 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
             {/* Airplane Animation */}
-            <motion.div
+            {/* <motion.div
               className="absolute inset-0 pointer-events-none"
               style={{ zIndex: 70 }}
               initial={{
@@ -80,6 +80,35 @@ const Home = () => {
                 times: [0, 0.1, 0.9, 1],
                 repeat: Infinity,
                 repeatDelay: 8
+              }}
+            >
+              <div className="relative">
+                <img
+                  src={airplanePng}
+                  alt="Flying airplane"
+                  className="absolute w-[35vw] max-w-[700px] min-w-[180px] h-auto"
+                />
+              </div>
+            </motion.div> */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              style={{ zIndex: 70 }}
+              initial={{
+                x: '-60%',
+                y: '100%',
+                opacity: 0,
+                rotate: -15
+              }}
+              animate={{
+                x: '110%',
+                y: '-50%',
+                opacity: [0, 1, 1, 0],
+                rotate: 15
+              }}
+              transition={{
+                duration: 6,
+                ease: 'easeInOut',
+                times: [0, 0.1, 0.9, 1]
               }}
             >
               <div className="relative">
