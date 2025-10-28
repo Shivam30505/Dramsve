@@ -198,10 +198,7 @@ const Header = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    openContact();
-                  }}
+                  onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
                 >
                   Book a free trial
                 </motion.button>
