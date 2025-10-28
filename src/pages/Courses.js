@@ -19,15 +19,9 @@ import tofelImage from '../images/tofel.jpg';
 import gmatImage from '../images/gmat.jpg';
 
 const Courses = () => {
-  const [ref, inView] = useInView({ threshold: 0.05, triggerOnce: true });
   const navigate = useNavigate();
   const [isIELTSModalOpen, setIsIELTSModalOpen] = useState(false);
   const [selectedIELTSProgram, setSelectedIELTSProgram] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  React.useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-  }, []);
 
   const ieltsPrograms = [
     {
@@ -197,17 +191,7 @@ const Courses = () => {
     setSelectedIELTSProgram(null);
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut"
-      }
-    }
-  };
+
 
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -272,7 +256,7 @@ const Courses = () => {
       
       <main className="pt-16 sm:pt-20 w-full">
         <section className="py-8 sm:py-16 md:py-24 min-h-screen w-full">
-          <div className="container mx-auto px-2 sm:px-4 lg:px-8 w-full" ref={ref}>
+          <div className="container mx-auto px-2 sm:px-4 lg:px-8 w-full">
             <div className="text-center mb-6 sm:mb-8 md:mb-12 px-2">
               <h1 
                 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide mb-3 sm:mb-4 mt-8 sm:mt-12 md:mt-16"
