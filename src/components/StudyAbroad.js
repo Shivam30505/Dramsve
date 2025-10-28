@@ -52,12 +52,51 @@ const StudyAbroad = ({ isOpen, onClose }) => {
   const ukLogos = importUKLogos();
   const canadaLogos = importCanadaLogos();
 
+  // const countries = [
+  //   { name: 'USA', code: 'USA' },
+  //   { name: 'UK 🇬🇧', code: 'UK' },
+  //   { name: 'Canada 🇨🇦', code: 'Canada' },
+  //   //{ name: 'Germany', code: 'Germany' }
+  // ];
+
   const countries = [
-    { name: 'USA', code: 'USA' },
-    { name: 'UK', code: 'UK' },
-    { name: 'Canada', code: 'Canada' },
-    //{ name: 'Germany', code: 'Germany' }
-  ];
+  {
+    name: 'USA',
+    code: 'USA',
+    flag: (
+      <img
+        src="https://flagcdn.com/us.svg"
+        alt="USA Flag"
+        width="40"
+        height="25"
+      />
+    ),
+  },
+  {
+    name: 'UK',
+    code: 'UK',
+    flag: (
+      <img
+        src="https://flagcdn.com/gb.svg"
+        alt="UK Flag"
+        width="40"
+        height="25"
+      />
+    ),
+  },
+  {
+    name: 'Canada',
+    code: 'Canada',
+    flag: (
+      <img
+        src="https://flagcdn.com/ca.svg"
+        alt="Canada Flag"
+        width="40"
+        height="25"
+      />
+    ),
+  },
+];
 
   const universities = {
     USA: universitiesData.USA.slice(0, -8).map((name, i) => ({
@@ -145,7 +184,10 @@ const StudyAbroad = ({ isOpen, onClose }) => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {country.name}
+                    <div className="flex items-center gap-2">
+                      <span>{country.name}</span>
+                      {country.flag}
+                    </div>
                   </motion.button>
                 ))}
               </div>

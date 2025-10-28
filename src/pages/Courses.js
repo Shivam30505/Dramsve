@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import MobileDesktopPrompt from '../components/MobileDesktopPrompt';
+
 import ieltsImage from '../images/ielts.jpg';
 import digitalSatImage from '../images/digital_sat.jpg';
 import frenchImage from '../images/french.jpg';
@@ -534,7 +534,6 @@ const Courses = () => {
 </AnimatePresence>
       
       <Footer />
-      <MobileDesktopPrompt />
     </div>
   );
 };
