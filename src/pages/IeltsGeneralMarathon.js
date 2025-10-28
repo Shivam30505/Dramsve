@@ -7,10 +7,10 @@ import Footer from '../components/Footer';
 
 const CounterCard = ({ metric, index }) => {
   const [count, setCount] = useState(0);
-const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
+  const [cardRef, cardInView] = useInView({ threshold: 0.3, triggerOnce: true });
 
   useEffect(() => {
-    if (inView) {
+    if (cardInView) {
       const duration = 2000;
       const steps = 60;
       const increment = metric.value / steps;
@@ -28,14 +28,14 @@ const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
       
       return () => clearInterval(timer);
     }
-  }, [inView, metric.value]);
+  }, [cardInView, metric.value]);
 
   return (
     <motion.div
-      // ref={ref}
+      ref={cardRef}
       className="bg-white rounded-xl p-6 text-center shadow-lg"
       initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      animate={cardInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1, duration: 0.6 }}
       whileHover={{ 
         y: -5,
@@ -372,35 +372,36 @@ const IeltsGeneralMarathon = () => {
         </section>
 
         {/* Success Metrics */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <motion.h2 
-              className="text-3xl font-bold text-center mb-12 font-display"
-              style={{color: '#6A3D9A'}}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              Proven Track Record
-            </motion.h2>
-            
-            <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-6"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {[
-                { value: 1.3, suffix: '+', label: 'Average Band Improvement' },
-                { value: 88, suffix: '%', label: 'Immigration Success Rate' },
-                { value: 500, suffix: '+', label: 'Students Transformed' },
-                { value: 4.8, suffix: '/5', label: 'Student Satisfaction' }
-              ].map((metric, index) => (
-                <CounterCard key={index} metric={metric} index={index} />
-              ))}
-            </motion.div>
-          </div>
-        </section>
+<section className="py-16" ref={ref}>
+  <div className="container mx-auto px-4">
+    <motion.h2 
+      className="text-3xl font-bold text-center mb-12 font-display"
+      style={{color: '#6A3D9A'}}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6 }}
+    >
+      Proven Track Record
+    </motion.h2>
+    
+    <motion.div
+      className="grid grid-cols-2 md:grid-cols-4 gap-6"
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+    >
+      {[
+        { value: 1.3, suffix: '+', label: 'Average Band Improvement' },
+        { value: 88, suffix: '%', label: 'Immigration Success Rate' },
+        { value: 500, suffix: '+', label: 'Students Transformed' },
+        { value: 4.8, suffix: '/5', label: 'Student Satisfaction' }
+      ].map((metric, index) => (
+        <CounterCard key={index} metric={metric} index={index} />
+      ))}
+    </motion.div>
+  </div>
+</section>
+        
 
         {/* CTA Section */}
         <section className="py-16" ref={ctaRef}>

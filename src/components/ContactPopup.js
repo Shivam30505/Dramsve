@@ -22,22 +22,52 @@ const ContactPopup = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validation
     if (!formData.email || !formData.name || !formData.phone || !formData.message) {
       setSubmitMessage('Please fill all required fields');
       return;
     }
     
     setIsSubmitting(true);
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitMessage('Message sent successfully!');
-      setFormData({ name: '', email: '', phone: '', courseInterest: '', message: '' });
+    setSubmitMessage('');
+
+    try {
+      // Create FormData object for Web3Forms
+      const formDataToSubmit = new FormData();
+      formDataToSubmit.append("access_key", "c538088f-b5b1-417f-8981-72d1790a6d4d");
+      formDataToSubmit.append("name", formData.name);
+      formDataToSubmit.append("email", formData.email);
+      formDataToSubmit.append("phone", formData.phone);
+      formDataToSubmit.append("courseInterest", formData.courseInterest);
+      formDataToSubmit.append("message", formData.message);
+      formDataToSubmit.append("subject", `Free Trial Request - ${formData.courseInterest || 'General Inquiry'}`);
+      
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataToSubmit
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitMessage('Message sent successfully! We will contact you soon.');
+        setFormData({ name: '', email: '', phone: '', courseInterest: '', message: '' });
+        
+        setTimeout(() => {
+          onClose();
+          setSubmitMessage('');
+        }, 3000);
+      } else {
+        setSubmitMessage('Failed to send message. Please try again.');
+      }
+      
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitMessage('Something went wrong. Please try again.');
+    } finally {
       setIsSubmitting(false);
-      setTimeout(() => {
-        onClose();
-        setSubmitMessage('');
-      }, 2000);
-    }, 1000);
+    }
   };
 
   const handleBackdropClick = (e) => {
@@ -103,6 +133,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   style={{color: '#333333'}}
                   id="name"
+                  name="name"
                   placeholder="Your Name"
                   type="text"
                   value={formData.name}
@@ -120,6 +151,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   style={{color: '#333333'}}
                   id="email"
+                  name="email"
                   placeholder="Your Email"
                   type="email"
                   value={formData.email}
@@ -137,6 +169,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   style={{color: '#333333'}}
                   id="phone"
+                  name="phone"
                   placeholder="Your Phone Number"
                   type="tel"
                   value={formData.phone}
@@ -154,6 +187,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   style={{color: '#333333'}}
                   id="courseInterest"
+                  name="courseInterest"
                   value={formData.courseInterest}
                   onChange={handleInputChange}
                   whileFocus={{ scale: 1.02 }}
@@ -181,6 +215,7 @@ const ContactPopup = ({ isOpen, onClose }) => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   style={{color: '#333333'}}
                   id="message"
+                  name="message"
                   placeholder="Tell us about your goals and how we can help"
                   rows="3"
                   value={formData.message}

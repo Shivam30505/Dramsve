@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useContact } from '../contexts/ContactContext';
+import StudyAbroad from './StudyAbroad';
 import logo from '../images/logo.png';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isStudyAbroadOpen, setIsStudyAbroadOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { openContact } = useContact();
@@ -30,7 +32,9 @@ const Header = () => {
   
   const handleNavigation = (item) => {
     setIsMobileMenuOpen(false);
-    if (item.href && item.href.startsWith('/')) {
+    if (item.id === 'study-abroad') {
+      setIsStudyAbroadOpen(true);
+    } else if (item.href && item.href.startsWith('/')) {
       navigate(item.href);
       window.scrollTo(0, 0);
     } else if (item.href) {
@@ -84,6 +88,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {[
+              { name: 'Study Abroad', id: 'study-abroad' },
               { name: 'Courses', href: '/courses' },
               { name: 'Services', id: 'services' },
               { name: 'About Us', href: '/about' },
@@ -110,7 +115,7 @@ const Header = () => {
                 scale: 1.05
               }}
               whileTap={{ scale: 0.95 }}
-              onClick={openContact}
+              onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
             >
               <span>Book a free trial</span>
             </motion.button>
@@ -165,6 +170,7 @@ const Header = () => {
               <div className="flex flex-col h-full pt-20 pb-6 px-6">
                 <nav className="flex flex-col gap-4">
                   {[
+                    { name: 'Study Abroad', id: 'study-abroad' },
                     { name: 'Courses', href: '/courses' },
                     { name: 'Services', id: 'services' },
                     { name: 'About Us', href: '/about' },
@@ -204,6 +210,12 @@ const Header = () => {
           </>
         )}
       </AnimatePresence>
+      
+      {/* Study Abroad Modal */}
+      <StudyAbroad 
+        isOpen={isStudyAbroadOpen} 
+        onClose={() => setIsStudyAbroadOpen(false)} 
+      />
     </motion.header>
   );
 };
