@@ -30,6 +30,7 @@ const importUKLogos = () => {
   return logos;
 };
 
+
 const importCanadaLogos = () => {
   const logos = {};
   for (let i = 1; i <= 94; i++) {
@@ -43,6 +44,36 @@ const importCanadaLogos = () => {
   return logos;
 };
 
+const importGermanyLogos = () => {
+  const logos = {};
+  const germanyImages = [
+    'BBW Berlin.webp',
+    'BERLIN SCHOOL OF BUSINESS & INNOVATION (BSBI).jpg',
+    'CONSTRUCTOR UNIVERSITY (JACOBS UNIVERSITY).png',
+    'Dresden International University.png',
+    'EBS University.webp',
+    'FHM University.png',
+    'FOM HOCHSCHULE.png',
+    'GISMA UNIVERSITY OF APPLIED SCIENCES GmbH.webp',
+    'IU INTERNATIONAL UNIVERSITY OF APPLIED SCIENCES.jpg',
+    'MACROMEDIA UNIVERSITY OF APPLIED SCIENCES.avif',
+    'MUNICH BUSINESS SCHOOL.webp',
+    'NEW EUROPEAN COLLEGE, MUNICH.png',
+    'SRH Higher Education GmbH, Supporting Company of SRH Universities.webp',
+    'STEINBEIS SCHOOL OF MANAGEMENT & INNOVATION GmbH.webp',
+    'UNIVERSITY OF EUROPE FOR APPLIED SCIENCES.webp'
+  ];
+  
+  germanyImages.forEach((imageName, index) => {
+    try {
+      logos[index + 1] = require(`../images/Germany/${imageName}`);
+    } catch (e) {
+      // Handle missing images
+    }
+  });
+  
+  return logos;
+};
 
 const StudyAbroad = ({ isOpen, onClose }) => {
   const [selectedCountry, setSelectedCountry] = useState('USA');
@@ -51,6 +82,7 @@ const StudyAbroad = ({ isOpen, onClose }) => {
   const usaLogos = importUSALogos();
   const ukLogos = importUKLogos();
   const canadaLogos = importCanadaLogos();
+  const germanyLogos = importGermanyLogos();
 
   // const countries = [
   //   { name: 'USA', code: 'USA' },
@@ -96,6 +128,18 @@ const StudyAbroad = ({ isOpen, onClose }) => {
       />
     ),
   },
+  {
+    name: 'Germany',
+    code: 'Germany',
+    flag: (
+      <img
+        src="https://flagcdn.com/de.svg"
+        alt="Germany Flag"
+        width="40"
+        height="25"
+      />
+    ),
+  },
 ];
 
   const universities = {
@@ -117,11 +161,11 @@ const StudyAbroad = ({ isOpen, onClose }) => {
       logo: canadaLogos[i + 1]
     })),
     
-    // Germany: universitiesData.Germany.map((name, i) => ({
-    //   id: `germany-${i + 1}`,
-    //   name: name,
-    //   logo: null
-    // }))
+    Germany: universitiesData.Germany.map((name, i) => ({
+      id: `germany-${i + 1}`,
+      name: name,
+      logo: germanyLogos[i + 1]
+    }))
   };
 
   const handleUniversityClick = () => {

@@ -66,11 +66,9 @@ export const universitiesData = {
   ],
   
   Germany: [
-    'Technical University of Munich', 'Ludwig Maximilian University of Munich', 'University of Heidelberg',
-    'Humboldt University of Berlin', 'Free University of Berlin', 'RWTH Aachen University',
-    'University of Freiburg', 'University of Tubingen', 'University of Gottingen', 'University of Hamburg',
-    'Technical University of Berlin', 'University of Bonn', 'University of Cologne', 'University of Munster',
-    'University of Stuttgart', 'Karlsruhe Institute of Technology', 'University of Wurzburg',
-    'University of Erlangen Nuremberg', 'University of Frankfurt', 'University of Mainz'
+    'BBW Berlin', 'Berlin School of Business & Innovation (BSBI)', 'Constructor University (Jacobs University)', 'Dresden International University',
+    'EBS University', 'FHM University', 'FOM Hochschule', 'GISMA University of Applied Sciences GmbH',
+    'IU International University of Applied Sciences', 'Macromedia University of Applied Sciences', 'Munich Business School', 'New European College, Munich',
+    'SRH Higher Education GmbH, Supporting Company of SRH Universities', 'Steinbeis School of Management & Innovation GmbH', 'University of Europe for Applied Sciences'
   ]
 };

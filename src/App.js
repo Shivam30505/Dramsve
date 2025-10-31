@@ -23,6 +23,12 @@ import ShorterGre from './pages/ShorterGre';
 import Gmat from './pages/Gmat';
 import EnglishChampion from './pages/EnglishChampion';
 
+import DigitalSATvsSAT from './pages/Blogs/DigitalSATvsSAT';
+import FrenchLearningBenefits from './pages/Blogs/FrenchLearningBenefits';
+import GMATQuantitative from './pages/Blogs/GMATQuantitative';
+import StudyAbroadSuccess from './pages/Blogs/StudyAbroadSuccess';
+import IELTSSpeakingTips from './pages/Blogs/IELTSSpeakingTips';
+
 import './index.css';
 
 function AppContent() {
@@ -49,6 +55,13 @@ function AppContent() {
         <Route path="/course/shorter-gre" element={<ShorterGre />} />
         <Route path="/course/gmat" element={<Gmat />} />
         <Route path="/course/english-champion" element={<EnglishChampion />} />
+
+        {/* Blog Routes */}
+        <Route path="/Blogs/digital-sat-vs-sat" element={<DigitalSATvsSAT />} />
+        <Route path="/Blogs/french-learning-benefits" element={<FrenchLearningBenefits />} />
+        <Route path="/Blogs/gmat-quantitative" element={<GMATQuantitative />} />
+        <Route path="/Blogs/study-abroad-success" element={<StudyAbroadSuccess />} />
+        <Route path="/Blogs/ielts-speaking-tips" element={<IELTSSpeakingTips />} />
       </Routes>
       <ContactPopup isOpen={isContactOpen} onClose={closeContact} />
     </>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 
 const BlogsSection = () => {
   const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [isPaused, setIsPaused] = useState(false);
+  const navigate = useNavigate();
 
   const blogs = [
     {
@@ -16,7 +18,8 @@ const BlogsSection = () => {
       readTime: "5 min read",
       category: "IELTS",
       image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=250&fit=crop",
-      tags: ["IELTS", "Speaking", "Test Prep"]
+      tags: ["IELTS", "Speaking", "Test Prep"],
+      route: "/Blogs/ielts-speaking-tips"
     },
     {
       id: 2,
@@ -27,7 +30,8 @@ const BlogsSection = () => {
       readTime: "8 min read",
       category: "SAT",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
-      tags: ["SAT", "Digital Test", "College Prep"]
+      tags: ["SAT", "Digital Test", "College Prep"],
+      route: "/Blogs/digital-sat-vs-sat"
     },
     {
       id: 3,
@@ -38,7 +42,8 @@ const BlogsSection = () => {
       readTime: "6 min read",
       category: "Languages",
       image: "https://images.unsplash.com/photo-1493612276216-ee3925520721?w=400&h=250&fit=crop",
-      tags: ["French", "Language Learning", "Culture"]
+      tags: ["French", "Language Learning", "Culture"],
+      route: "/Blogs/french-learning-benefits"
     },
     {
       id: 4,
@@ -49,7 +54,8 @@ const BlogsSection = () => {
       readTime: "10 min read",
       category: "GMAT",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
-      tags: ["GMAT", "Math", "Business School"]
+      tags: ["GMAT", "Math", "Business School"],
+      route: "/Blogs/gmat-quantitative"
     },
     {
       id: 5,
@@ -60,7 +66,8 @@ const BlogsSection = () => {
       readTime: "12 min read",
       category: "Study Abroad",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop",
-      tags: ["Study Abroad", "International", "Education"]
+      tags: ["Study Abroad", "International", "Education"],
+      route: "/Blogs/study-abroad-success"
     }
   ];
 
@@ -70,7 +77,7 @@ const BlogsSection = () => {
   return (
     <section 
   className="pt-32 sm:pt-40 pb-20 sm:pb-24"
-  style={{background: 'linear-gradient(135deg, #F7F7F7 0%, #FFF9F3 100%)'}}
+  style={{background: 'linear-gradient(135deg, #F7F7F7 0%, #FFF9F3 100%)'}}
 >
       <div className="container mx-auto px-4" ref={ref}>
         <motion.div 
@@ -114,9 +121,9 @@ const BlogsSection = () => {
                 key={index}
                 className="flex-shrink-0 relative bg-white rounded-xl sm:rounded-2xl overflow-hidden group cursor-pointer"
                 style={{
-                  width: '280px', // Reduced width for mobile
+                  width: '280px',
                   minWidth: '280px',
-                  height: '420px', // Reduced height for mobile
+                  height: '420px',
                   boxShadow: '0 6px 16px rgba(0, 0, 0, 0.1)',
                 }}
                 whileHover={{ 
@@ -148,7 +155,7 @@ const BlogsSection = () => {
                 </div>
 
                 {/* Blog Content */}
-                <div className="p-4 flex flex-col justify-between h-80"> {/* Adjusted height */}
+                <div className="p-4 flex flex-col justify-between" style={{height: 'calc(100% - 160px)'}}>
                   <div>
                     <h3 
                       className="text-sm sm:text-base font-bold mb-2 line-clamp-2"
@@ -178,29 +185,31 @@ const BlogsSection = () => {
                     </div>
                   </div>
 
-                  {/* Author & Meta Info */}
-                  <div className="border-t pt-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div 
-                          className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                          style={{backgroundColor: '#6A3D9A'}}
-                        >
-                          {blog.author.split(' ').map(n => n[0]).join('')}
-                        </div>
-                        <div>
-                          <p className="text-xs font-medium" style={{color: '#333333'}}>
-                            {blog.author.split(' ')[0]}
-                          </p>
-                          <p className="text-xs" style={{color: '#666666'}}>
-                            {blog.date.split(' ')[1]} {blog.date.split(' ')[2]}
-                          </p>
-                        </div>
-                      </div>
-                      <span className="text-xs" style={{color: '#6C9E24'}}>
-                        {blog.readTime}
-                      </span>
-                    </div>
+                  {/* Know More Button */}
+                  <div className="border-t pt-4">
+                    <motion.button
+                      className="w-full py-2.5 rounded-lg font-bold text-white text-sm flex items-center justify-center gap-2"
+                      style={{backgroundColor: '#6A3D9A'}}
+                      whileHover={{ 
+                        scale: 1.03,
+                        backgroundColor: '#6C9E24',
+                        boxShadow: '0 8px 20px rgba(108, 158, 36, 0.3)'
+                      }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(blog.route);
+                      }}
+                    >
+                      <span>Know More</span>
+                      <motion.span 
+                        className="material-symbols-outlined text-base"
+                        animate={{ x: [0, 3, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        arrow_forward
+                      </motion.span>
+                    </motion.button>
                   </div>
                 </div>
 

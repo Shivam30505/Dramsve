@@ -8,7 +8,6 @@ import Footer from '../components/Footer';
 const FrenchLanguage = () => {
   const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [levelsRef, levelsInView] = useInView({ threshold: 0.2, triggerOnce: true });
-  const [packagesRef, packagesInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [benefitsRef, benefitsInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const [ctaRef, ctaInView] = useInView({ threshold: 0.2, triggerOnce: true });
   const { openContact } = useContact();
@@ -52,76 +51,72 @@ const FrenchLanguage = () => {
     }
   ];
 
-  const courseLevels = [
+  const frenchBatches = [
     {
-      level: 'Basic & A1',
-      duration: '11 Weeks',
-      validity: '150 Days',
-      skills: 'Self-introduction, basic phrases, simple conversations',
-      color: '#6A3D9A'
-    },
-    {
-      level: 'A2',
-      duration: '7 Weeks',
-      validity: '180 Days',
-      skills: 'Daily routines, basic writing',
-      color: '#10B981'
-    },
-    {
-      level: 'B1',
-      duration: '7 Weeks',
-      validity: '180 Days',
-      skills: 'Travel communication, describing experiences',
-      color: '#F59E0B'
-    },
-    {
-      level: 'B2',
-      duration: '7 Weeks',
-      validity: '180 Days',
-      skills: 'Fluent expression, professional communication',
-      color: '#EF4444'
-    },
-    {
-      level: 'Complete Package',
-      duration: '32 Weeks',
-      validity: '42 Weeks',
-      skills: 'Comprehensive A1-B2 mastery',
-      color: '#8B5CF6'
-    }
-  ];
-
-  const packageOptions = [
-    {
-      name: 'Basic & A1',
-      duration: '11 Weeks',
-      validity: '150 Days',
-      features: ['Self-introduction skills', 'Basic phrases mastery', 'Simple conversations', 'Morning/Evening/All timings'],
-      color: '#6A3D9A',
-      popular: false
-    },
-    {
-      name: 'A2 Level',
-      duration: '7 Weeks',
-      validity: '180 Days',
-      features: ['Daily routine communication', 'Basic writing skills', 'Expanded vocabulary', 'Flexible scheduling'],
+      name: 'French A2',
+      duration: '90 Days',
+      description: 'Master elementary French for daily communication and basic writing skills',
+      features: ['Daily routine communication', 'Basic writing skills', 'Expanded vocabulary', 'Interactive sessions'],
       color: '#10B981',
-      popular: false
+      hasFreeTrial: true,
+      icon: 'auto_stories'
     },
     {
-      name: 'Complete Basic to B2',
-      duration: '32 Weeks',
-      validity: '42 Weeks',
-      features: ['Comprehensive A1-B2 coverage', 'DELF exam preparation', 'Cultural immersion', 'Progress tracking'],
+      name: 'French B1',
+      duration: '90 Days',
+      description: 'Advance to intermediate level with travel and work communication skills',
+      features: ['Travel communication', 'Work scenarios', 'Describing experiences', 'Opinion expression'],
+      color: '#F59E0B',
+      hasFreeTrial: true,
+      icon: 'flight_takeoff'
+    },
+    {
+      name: 'French B2',
+      duration: '90 Days',
+      description: 'Achieve fluency with professional communication and complex discussions',
+      features: ['Fluent expression', 'Professional communication', 'Complex discussions', 'Advanced writing'],
+      color: '#EF4444',
+      hasFreeTrial: true,
+      icon: 'workspace_premium'
+    },
+    {
+      name: 'French Basic\nA1-B2',
+      duration: '42 Weeks',
+      description: 'Complete comprehensive package from beginner to upper-intermediate level',
+      features: ['A1 to B2 coverage', 'DELF exam preparation', 'Cultural immersion', 'Progress tracking', 'Certificate upon completion'],
       color: '#8B5CF6',
-      popular: true
+      hasFreeTrial: true,
+      popular: true,
+      icon: 'military_tech'
     },
     {
-      name: 'Basic, A1 & A2',
-      duration: '18 Weeks',
-      validity: '210 Days',
-      features: ['Foundation to intermediate', 'Combined package savings', 'Structured progression', 'Recorded sessions'],
+      name: 'French Basic\nA1 & B2',
+      duration: '210 Days',
+      description: 'Foundation to upper-intermediate with flexible timing options',
+      timings: [
+        { slot: 'Evening', icon: 'nights_stay' },
+        { slot: 'Morning', icon: 'wb_sunny' },
+        { slot: 'All Timings', icon: 'schedule' }
+      ],
+      features: ['Foundation to B2', 'Flexible scheduling', 'Structured progression', 'Recorded sessions', 'Personal mentoring'],
       color: '#6C9E24',
-      popular: false
+      hasFreeTrial: true,
+      icon: 'event_available'
+    },
+    {
+      name: 'French Basic A1',
+      duration: '150 Days',
+      description: 'Build strong French foundation with multiple learning modes',
+      timings: [
+        { slot: 'Evening', icon: 'nights_stay' },
+        { slot: 'Morning', icon: 'wb_sunny' },
+        { slot: 'All Timings', icon: 'schedule' }
+      ],
+      weekendMode: true,
+      features: ['Self-introduction skills', 'Basic phrases mastery', 'Simple conversations', 'Grammar fundamentals', 'Weekend option available'],
+      color: '#6A3D9A',
+      hasFreeTrial: true,
+      icon: 'school'
     }
   ];
 
@@ -375,182 +370,194 @@ const FrenchLanguage = () => {
           </div>
         </section>
 
-        {/* Course Levels */}
+        {/* French Batch Details */}
         <section className="py-16" ref={levelsRef}>
           <div className="container mx-auto px-4">
             <motion.h2 
-              className="text-3xl font-bold text-center mb-12"
+              className="text-3xl md:text-4xl font-bold text-center mb-4"
               style={{color: '#6A3D9A'}}
               initial={{ opacity: 0, y: 30 }}
               animate={levelsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
             >
-              Course Structure & Levels
+              French Batch Details
             </motion.h2>
             
-            <div className="max-w-6xl mx-auto">
-              <motion.div 
-                className="bg-white rounded-xl p-6 shadow-lg mb-8 text-center"
-                initial={{ opacity: 0, y: 30 }}
-                animate={levelsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <h3 className="text-xl font-bold mb-2" style={{color: '#6A3D9A'}}>CEFR Standards Compliance</h3>
-                <p style={{color: '#666666'}}>Our program follows internationally recognized Common European Framework standards</p>
-              </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {courseLevels.slice(0, 3).map((level, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-white rounded-xl p-6 shadow-lg"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={levelsInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ 
-                      y: -5,
-                      scale: 1.02,
-                      boxShadow: '0 15px 30px rgba(106, 61, 154, 0.15)'
-                    }}
-                  >
-                    <div className="text-center mb-4">
-                      <div 
-                        className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3"
-                        style={{backgroundColor: level.color, color: 'white'}}
-                      >
-                        <span className="font-bold text-lg">{level.level.split(' ')[0]}</span>
-                      </div>
-                      <h3 className="text-lg font-bold" style={{color: level.color}}>{level.level}</h3>
-                    </div>
-                    <div className="space-y-2 text-center">
-                      <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
-                        <span className="text-sm font-medium">Duration:</span>
-                        <span className="text-sm" style={{color: level.color}}>{level.duration}</span>
-                      </div>
-                      <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
-                        <span className="text-sm font-medium">Validity:</span>
-                        <span className="text-sm" style={{color: level.color}}>{level.validity}</span>
-                      </div>
-                      <p className="text-sm mt-3" style={{color: '#666666'}}>{level.skills}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mt-6">
-                {courseLevels.slice(3).map((level, index) => (
-                  <motion.div
-                    key={index + 3}
-                    className="bg-white rounded-xl p-6 shadow-lg"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={levelsInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: (index + 3) * 0.1 }}
-                    whileHover={{ 
-                      y: -5,
-                      scale: 1.02,
-                      boxShadow: '0 15px 30px rgba(106, 61, 154, 0.15)'
-                    }}
-                  >
-                    <div className="text-center mb-4">
-                      <div 
-                        className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3"
-                        style={{backgroundColor: level.color, color: 'white'}}
-                      >
-                        {level.level === 'Complete Package' ? (
-                          <span className="material-symbols-outlined text-2xl">workspace_premium</span>
-                        ) : (
-                          <span className="font-bold text-lg">{level.level.split(' ')[0]}</span>
-                        )}
-                      </div>
-                      <h3 className="text-lg font-bold" style={{color: level.color}}>{level.level}</h3>
-                    </div>
-                    <div className="space-y-2 text-center">
-                      <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
-                        <span className="text-sm font-medium">Duration:</span>
-                        <span className="text-sm" style={{color: level.color}}>{level.duration}</span>
-                      </div>
-                      <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
-                        <span className="text-sm font-medium">Validity:</span>
-                        <span className="text-sm" style={{color: level.color}}>{level.validity}</span>
-                      </div>
-                      <p className="text-sm mt-3" style={{color: '#666666'}}>{level.skills}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Package Options */}
-        <section className="py-16" ref={packagesRef}>
-          <div className="container mx-auto px-4">
-            <motion.h2 
-              className="text-3xl font-bold text-center mb-12"
-              style={{color: '#6A3D9A'}}
-              initial={{ opacity: 0, y: 30 }}
-              animate={packagesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
+            <motion.p 
+              className="text-center text-lg mb-12 max-w-3xl mx-auto"
+              style={{color: '#666666'}}
+              initial={{ opacity: 0, y: 20 }}
+              animate={levelsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Course Package Options
-            </motion.h2>
+              Choose from our comprehensive French language programs designed for all proficiency levels.
+              <span className="block mt-2 font-semibold" style={{color: '#6C9E24'}}>All batches include free trial sessions!</span>
+            </motion.p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {packageOptions.map((pkg, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+              {frenchBatches.map((batch, index) => (
                 <motion.div
                   key={index}
-                  className={`bg-white rounded-xl p-6 shadow-lg relative ${pkg.popular ? 'ring-2' : ''}`}
-                  style={pkg.popular ? {ringColor: pkg.color} : {}}
+                  className={`bg-white rounded-2xl p-6 shadow-lg relative overflow-hidden flex flex-col ${batch.popular ? 'ring-2 ring-offset-2' : ''}`}
+                  style={batch.popular ? {ringColor: batch.color} : {}}
                   initial={{ opacity: 0, y: 50 }}
-                  animate={packagesInView ? { opacity: 1, y: 0 } : {}}
+                  animate={levelsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ 
-                    y: -5,
+                    y: -8,
                     scale: 1.02,
-                    boxShadow: '0 15px 30px rgba(106, 61, 154, 0.15)'
+                    boxShadow: `0 20px 40px ${batch.color}30`
                   }}
                 >
-                  {pkg.popular && (
-                    <div 
-                      className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full text-white text-sm font-bold"
-                      style={{backgroundColor: pkg.color}}
+                  {/* Background decoration */}
+                  <div 
+                    className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-10"
+                    style={{backgroundColor: batch.color}}
+                  />
+                  
+                  
+                  
+                  {/* Free Trial Badge */}
+                  {batch.hasFreeTrial && (
+                    <motion.div 
+                      className="absolute top-4 right-4 px-3 py-1 rounded-full text-white text-xs font-bold shadow-md"
+                      style={{backgroundColor: '#6C9E24'}}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      animate={{ 
+                        y: [0, -3, 0],
+                      }}
+                      transition={{
+                        y: {
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }
+                      }}
                     >
-                      Most Popular
-                    </div>
+                      🎁 Free Trial
+                    </motion.div>
                   )}
                   
-                  <div className="text-center mb-6">
-                    <h3 className="text-lg font-bold mb-2" style={{color: pkg.color}}>{pkg.name}</h3>
-                    <div className="text-sm mb-2" style={{color: '#666666'}}>
-                      {pkg.duration} • {pkg.validity}
+                  {/* Header */}
+                  <div className="relative z-10 mb-6 pr-20">
+                    <div className="flex items-center gap-3 mb-3">
+                      <motion.div 
+                        className="w-14 h-14 rounded-xl flex items-center justify-center shadow-lg"
+                        style={{backgroundColor: batch.color}}
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <span className="material-symbols-outlined text-white text-2xl">{batch.icon}</span>
+                      </motion.div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold leading-tight whitespace-pre-line" style={{color: batch.color}}>{batch.name}</h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="material-symbols-outlined text-sm" style={{color: '#666666'}}>schedule</span>
+                          <span className="text-sm font-semibold" style={{color: '#666666'}}>{batch.duration}</span>
+                        </div>
+                      </div>
                     </div>
+                    
+                    <p className="text-sm leading-relaxed" style={{color: '#666666'}}>{batch.description}</p>
                   </div>
                   
-                  <ul className="space-y-3 mb-6">
-                    {pkg.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                  {/* Timing Options */}
+                  <div className="mb-4">
+                    {batch.timings ? (
+                      <div className="p-3 rounded-xl" style={{backgroundColor: `${batch.color}10`}}>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="material-symbols-outlined text-sm" style={{color: batch.color}}>schedule</span>
+                          <span className="text-xs font-bold" style={{color: batch.color}}>Available Timings:</span>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {batch.timings.map((timing, idx) => (
+                            <motion.div
+                              key={idx}
+                              className="flex items-center gap-1 px-2 py-1 rounded-lg bg-white shadow-sm"
+                              whileHover={{ scale: 1.05, backgroundColor: `${batch.color}20` }}
+                            >
+                              <span className="material-symbols-outlined text-xs" style={{color: batch.color}}>{timing.icon}</span>
+                              <span className="text-xs font-medium" style={{color: '#333333'}}>{timing.slot}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                        {batch.weekendMode && (
+                          <div className="mt-2 flex items-center gap-1">
+                            <span className="material-symbols-outlined text-xs" style={{color: batch.color}}>event</span>
+                            <span className="text-xs font-semibold" style={{color: batch.color}}>+ Weekend Mode Available</span>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div style={{height: '0px'}}></div>
+                    )}
+                  </div>
+                  
+                  {/* Features */}
+                  <ul className="space-y-2 mb-6 flex-grow">
+                    {batch.features.map((feature, idx) => (
+                      <motion.li 
+                        key={idx} 
+                        className="flex items-start gap-2"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={levelsInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: index * 0.1 + idx * 0.05 }}
+                      >
+                        <span className="material-symbols-outlined text-sm mt-0.5" style={{color: '#6C9E24'}}>check_circle</span>
                         <span className="text-sm" style={{color: '#666666'}}>{feature}</span>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                   
+                  {/* CTA Button */}
                   <motion.button 
-                    className="w-full py-3 rounded-lg font-bold text-white transition-all"
-                    style={{backgroundColor: pkg.color}}
+                    className="w-full py-3 rounded-xl font-bold text-white transition-all relative overflow-hidden group"
+                    style={{backgroundColor: batch.color}}
                     whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: `0 8px 25px ${pkg.color}40`,
-                      y: -2
+                      scale: 1.03,
+                      boxShadow: `0 10px 30px ${batch.color}50`
                     }}
-                    whileTap={{ scale: 0.95 }}
-                     onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={openContact}
                   >
-                    Choose Package
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <span>Enroll Now</span>
+                      <motion.span 
+                        className="material-symbols-outlined text-lg"
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        arrow_forward
+                      </motion.span>
+                    </span>
+                    <motion.div 
+                      className="absolute inset-0 bg-white/20"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.5 }}
+                    />
                   </motion.button>
                 </motion.div>
               ))}
             </div>
+            
+            {/* Additional Info */}
+            <motion.div 
+              className="mt-12 text-center p-6 rounded-2xl max-w-4xl mx-auto"
+              style={{background: 'linear-gradient(135deg, rgba(106, 61, 154, 0.1) 0%, rgba(108, 158, 36, 0.1) 100%)'}}
+              initial={{ opacity: 0, y: 30 }}
+              animate={levelsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <span className="material-symbols-outlined text-2xl" style={{color: '#6A3D9A'}}>info</span>
+                <h4 className="text-lg font-bold" style={{color: '#6A3D9A'}}>Important Note</h4>
+              </div>
+              <p className="text-sm leading-relaxed" style={{color: '#666666'}}>
+                Free trial sessions are available for all batches to help you experience our teaching methodology before enrolling.
+                <span className="block mt-2 font-semibold">Contact us to schedule your free trial session today!</span>
+              </p>
+            </motion.div>
           </div>
         </section>
 

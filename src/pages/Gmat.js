@@ -81,31 +81,25 @@ const Gmat = () => {
 
   const batchOptions = [
     {
-      title: 'Weekday Batch',
-      duration: '2 Months',
-      timing: 'Mon-Fri 7-9 PM',
+      title: 'GMAT',
+      duration: '8 Weeks',
+      timing: 'Flexible Timings',
       size: '15-20 Students',
-      fee: '₹18,000',
-      icon: 'work',
+      fee: 'Premium',
+      validity: '90 Days',
+      icon: 'analytics',
       color: '#6A3D9A'
     },
     {
-      title: 'Weekend Batch',
-      duration: '3 Months',
-      timing: 'Sat-Sun 10 AM-1 PM',
-      size: '15-20 Students',
-      fee: '₹20,000',
-      icon: 'weekend',
-      color: '#6C9E24'
-    },
-    {
-      title: 'Fast Track',
-      duration: '1 Month',
-      timing: 'Mon-Fri 6-8 PM',
-      size: '10-15 Students',
-      fee: '₹15,000',
-      icon: 'flash_on',
-      color: '#8B5CF6'
+      title: 'GMAT - Trial',
+      duration: 'Trial',
+      timing: 'Sample Classes',
+      size: 'Open Access',
+      fee: 'Free Trial',
+      validity: 'Trial',
+      icon: 'trial_mode',
+      color: '#EF4444',
+      trial: true
     }
   ];
 
@@ -253,7 +247,7 @@ const Gmat = () => {
             </motion.div>
 
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
               variants={containerVariants}
               initial="hidden"
               animate={batchInView ? "visible" : "hidden"}
@@ -261,7 +255,7 @@ const Gmat = () => {
               {batchOptions.map((batch, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white rounded-xl p-8 shadow-lg text-center"
+                  className="bg-white rounded-xl p-8 shadow-lg text-center relative"
                   variants={cardVariants}
                   whileHover={{ 
                     y: -5,
@@ -269,6 +263,11 @@ const Gmat = () => {
                   }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
+                  {batch.trial && (
+                    <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                      Trial
+                    </div>
+                  )}
                   <div 
                     className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
                     style={{backgroundColor: `${batch.color}20`}}
@@ -282,6 +281,10 @@ const Gmat = () => {
                     <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
                       <span className="text-sm font-medium">Duration:</span>
                       <span className="text-sm" style={{color: batch.color}}>{batch.duration}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
+                      <span className="text-sm font-medium">Validity:</span>
+                      <span className="text-sm" style={{color: batch.color}}>{batch.validity}</span>
                     </div>
                     <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
                       <span className="text-sm font-medium">Timing:</span>

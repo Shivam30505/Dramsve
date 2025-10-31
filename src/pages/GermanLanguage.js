@@ -52,82 +52,42 @@ const GermanLanguage = () => {
     }
   ];
 
-  const courseLevels = [
-    {
-      level: 'Basic & A1',
-      duration: '11 Weeks',
-      validity: '150 Days',
-      skills: 'Basic expressions, self-introduction, simple conversations',
-      color: '#6A3D9A'
-    },
-    {
-      level: 'A2',
-      duration: '7 Weeks',
-      validity: '180 Days',
-      skills: 'Routine tasks, familiar topics, simple descriptions',
-      color: '#10B981'
-    },
-    {
-      level: 'B1',
-      duration: '10 Weeks',
-      validity: '180 Days',
-      skills: 'Travel situations, work scenarios, opinion explanations',
-      color: '#F59E0B'
-    },
-    {
-      level: 'B2',
-      duration: '10 Weeks',
-      validity: '180 Days',
-      skills: 'Detailed discussions, complex texts, smooth interactions',
-      color: '#EF4444'
-    },
-    {
-      level: 'C1',
-      duration: '12 Weeks',
-      validity: '210 Days',
-      skills: 'Academic/professional fluency, complex presentations',
-      color: '#8B5CF6'
-    },
-    {
-      level: 'C2',
-      duration: '12 Weeks',
-      validity: '210 Days',
-      skills: 'Native-like precision, subtle nuance, complete mastery',
-      color: '#6C9E24'
-    }
-  ];
+
 
   const packageOptions = [
     {
-      name: 'Basic & A1',
+      name: 'German Basic & A1',
       duration: '11 Weeks',
       validity: '150 Days',
       features: ['Basic everyday expressions', 'Self-introduction skills', 'Simple conversations', 'Live online classes'],
       color: '#6A3D9A',
-      popular: false
+      popular: false,
+      trial: true
     },
     {
-      name: 'A2 Only',
+      name: 'German A2',
       duration: '7 Weeks',
       validity: '180 Days',
       features: ['Routine task communication', 'Familiar topic discussions', 'Simple descriptions', 'Recorded sessions'],
       color: '#10B981',
-      popular: false
+      popular: false,
+      trial: true
     },
     {
-      name: 'Basic, A1 & A2',
+      name: 'German A1 & A2',
       duration: '18 Weeks',
       validity: '210 Days',
       features: ['Foundation to pre-intermediate', 'Seamless progression', 'Comprehensive coverage', 'Goethe-Zertifikat prep'],
       color: '#6C9E24',
-      popular: true
+      popular: true,
+      trial: true
     },
     {
-      name: 'Complete A1-C2',
-      duration: '62 Weeks',
-      validity: '365 Days',
-      features: ['Complete pathway to mastery', 'All certification levels', 'TestDaF preparation', 'University admission ready'],
-      color: '#8B5CF6',
+      name: 'German B1',
+      duration: '10 Weeks',
+      validity: '90 Days',
+      features: ['Travel situations', 'Work scenarios', 'Opinion explanations', 'Intermediate level mastery'],
+      color: '#F59E0B',
       popular: false
     }
   ];
@@ -409,70 +369,6 @@ const GermanLanguage = () => {
           </div>
         </section>
 
-        {/* CEFR Level Structure */}
-        <section className="py-16" ref={levelsRef}>
-          <div className="container mx-auto px-4">
-            <motion.h2 
-              className="text-3xl font-bold text-center mb-12"
-              style={{color: '#6A3D9A'}}
-              initial={{ opacity: 0, y: 30 }}
-              animate={levelsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-            >
-              CEFR Level Structure
-            </motion.h2>
-            
-            <div className="max-w-6xl mx-auto">
-              <motion.div 
-                className="bg-white rounded-xl p-6 shadow-lg mb-8 text-center"
-                initial={{ opacity: 0, y: 30 }}
-                animate={levelsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <h3 className="text-xl font-bold mb-2" style={{color: '#6A3D9A'}}>Complete Pathway from Beginner to Mastery</h3>
-                <p style={{color: '#666666'}}>Structured progression through all CEFR levels with seamless advancement</p>
-              </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courseLevels.map((level, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-white rounded-xl p-6 shadow-lg"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={levelsInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ 
-                      y: -5,
-                      scale: 1.02,
-                      boxShadow: '0 15px 30px rgba(106, 61, 154, 0.15)'
-                    }}
-                  >
-                    <div className="text-center mb-4">
-                      <div 
-                        className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3"
-                        style={{backgroundColor: level.color, color: 'white'}}
-                      >
-                        <span className="font-bold text-lg">{level.level.includes('&') ? level.level.split(' ')[2] : level.level}</span>
-                      </div>
-                      <h3 className="text-lg font-bold" style={{color: level.color}}>{level.level}</h3>
-                    </div>
-                    <div className="space-y-2 text-center">
-                      <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
-                        <span className="text-sm font-medium">Duration:</span>
-                        <span className="text-sm" style={{color: level.color}}>{level.duration}</span>
-                      </div>
-                      <div className="flex justify-between items-center p-2 rounded" style={{backgroundColor: '#F7F7F7'}}>
-                        <span className="text-sm font-medium">Validity:</span>
-                        <span className="text-sm" style={{color: level.color}}>{level.validity}</span>
-                      </div>
-                      <p className="text-sm mt-3" style={{color: '#666666'}}>{level.skills}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Course Package Options */}
         <section className="py-16" ref={packagesRef}>
@@ -508,6 +404,11 @@ const GermanLanguage = () => {
                       style={{backgroundColor: pkg.color}}
                     >
                       Most Popular
+                    </div>
+                  )}
+                  {pkg.trial && (
+                    <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                      Trial
                     </div>
                   )}
                   

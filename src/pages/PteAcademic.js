@@ -55,16 +55,17 @@ const PteAcademic = () => {
 
   const packages = [
     {
-      name: 'Live Class',
-      duration: '6 Weeks',
-      validity: '90 Days',
-      price: 'Premium',
-      features: ['Live interactive classes', 'Expert instructors', 'Flexible timings', 'Strategy-focused learning'],
-      color: '#6A3D9A',
-      popular: false
+      name: 'PTE Academic - Trial',
+      duration: 'Trial',
+      validity: '0 Days',
+      price: 'Free Trial',
+      features: ['Sample test access', 'Basic study materials', 'Limited practice', 'Trial experience'],
+      color: '#EF4444',
+      popular: false,
+      trial: true
     },
     {
-      name: 'Champion',
+      name: 'PTE Core - Champion',
       duration: '6 Weeks',
       validity: '180 Days',
       price: 'Most Popular',
@@ -73,13 +74,14 @@ const PteAcademic = () => {
       popular: true
     },
     {
-      name: 'Self Prep',
-      duration: 'Self-Paced',
-      validity: '180 Days',
-      price: 'Flexible',
-      features: ['Practice tests access', 'Study materials', 'Learn at your pace', 'Extended access'],
+      name: 'PTE Core - Trial',
+      duration: 'Trial',
+      validity: '0 Days',
+      price: 'Free Trial',
+      features: ['Core test preview', 'Basic preparation', 'Sample questions', 'Trial access'],
       color: '#8B5CF6',
-      popular: false
+      popular: false,
+      trial: true
     }
   ];
 
@@ -440,6 +442,11 @@ const PteAcademic = () => {
                       style={{backgroundColor: pkg.color}}
                     >
                       Most Popular
+                    </div>
+                  )}
+                  {pkg.trial && (
+                    <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                      Trial
                     </div>
                   )}
                   

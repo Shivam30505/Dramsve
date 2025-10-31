@@ -55,40 +55,24 @@ const DuolingoEnglish = () => {
 
   const packages = [
     {
-      name: 'Basic Preparation',
-      duration: '2 Weeks',
-      mode: 'Live Online',
-      price: 'Starter',
+      name: 'Duolingo English Test - Trial',
+      duration: 'Trial',
+      mode: 'Online',
+      price: 'Free Trial',
       features: ['Practice test access', 'DET strategy lessons', 'Vocabulary exercises', 'Grammar fundamentals'],
-      color: '#6A3D9A',
-      popular: false
+      color: '#EF4444',
+      popular: false,
+      trial: true
     },
     {
-      name: 'Standard Package',
+      name: 'Duolingo English Test - Champion',
       duration: '4 Weeks',
       mode: 'Live + Recordings',
       price: 'Most Popular',
       features: ['5 full-length practice tests', 'Speaking & writing workshops', 'Error analysis', 'Flexible timings'],
       color: '#6C9E24',
-      popular: true
-    },
-    {
-      name: 'Premium Package',
-      duration: '6 Weeks',
-      mode: 'Live + Mentorship',
-      price: 'Complete',
-      features: ['Standard Package included', '1:1 mentoring sessions', 'Mock test assessment', 'Personalized feedback'],
-      color: '#8B5CF6',
-      popular: false
-    },
-    {
-      name: 'Combo Package',
-      duration: 'Flexible',
-      mode: 'Comprehensive',
-      price: 'Ultimate',
-      features: ['DET preparation', 'IELTS/TOEFL crash course', 'English foundation', 'Career guidance'],
-      color: '#EF4444',
-      popular: false
+      popular: true,
+      validity: '60 Days'
     }
   ];
 
@@ -413,7 +397,7 @@ const DuolingoEnglish = () => {
               Choose Your DET Package
             </motion.h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {packages.map((pkg, index) => (
                 <motion.div
                   key={index}
@@ -438,12 +422,17 @@ const DuolingoEnglish = () => {
                       Most Popular
                     </div>
                   )}
+                  {pkg.trial && (
+                    <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                      Trial
+                    </div>
+                  )}
                   
                   <div className="text-center mb-6">
                     <h3 className="text-lg font-bold mb-2" style={{color: pkg.color}}>{pkg.name}</h3>
                     <div className="text-xl font-bold mb-2" style={{color: '#333333'}}>{pkg.price}</div>
                     <div className="text-sm" style={{color: '#666666'}}>
-                      {pkg.duration} • {pkg.mode}
+                      {pkg.duration} • {pkg.validity || pkg.mode}
                     </div>
                   </div>
                   
@@ -469,6 +458,7 @@ const DuolingoEnglish = () => {
                       boxShadow: [`0 4px 15px ${pkg.color}20`, `0 6px 20px ${pkg.color}30`, `0 4px 15px ${pkg.color}20`]
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
+                    onClick={() => window.open('https://elearning.dramsve.com/', '_blank')}
                   >
                     Choose Package
                   </motion.button>
